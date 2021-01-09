@@ -1,33 +1,40 @@
 #ifndef DATE_WARP_H_
 #define DATE_WARP_H_
 
-#include "date.h"
+#include <iostream>
+
+//extern "C"{
+	#include "date.h"
+//}
+
+using std::ostream;
+
 class DateWrap{
-	//I think we should keep the data here and use Date functions only 
-	//for comparisons
 	int day_data;
 	int month_data;
 	int year_data;
-	Date turnIntoDate() const{
-		return dateCreate(day_data, month_data, year_data);
-	}
+	Date turnIntoDate() const;
 	int dateWrapCompare(const DateWrap& date) const;
+	
 public:
-	DateWrap(int day, int month, int year): day_data(day), month_data(month), year_data(year){}
-	int day() const{
-		return day_data;
-	}
-	int month() const{
-		return month_data;
-	}
-	int year() const{
-		return year_data;
-	}
+	DateWrap(const DateWrap&) = default;
+	~DateWrap() = default;
+	DateWrap(int day, int month, int year);
+
+	int day() const;
+	int month() const;
+	int year() const;
+
 	bool operator==(const DateWrap& date)const;
 	bool operator!=(const DateWrap& date)const;
 	bool operator<=(const DateWrap& date)const;
 	bool operator>=(const DateWrap& date)const;
 	bool operator<(const DateWrap& date)const;
 	bool operator>(const DateWrap& date)const;
+	DateWrap operator++(int);
+	DateWrap operator+=(int days);
+	DateWrap operator+(int days) const;
+	friend DateWrap operator+(int days, const DateWrap& date);
+	friend ostream& operator<<(ostream& os, const DateWrap& date);
 };
 #endif
