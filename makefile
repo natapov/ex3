@@ -1,5 +1,5 @@
 CC = g++
-EXEC = test.exe
+EXEC = test
 EXEC_MAIN = test.o
 EXEC_OBJS = date.o date_wrap.o 
 DEBUG_FLAG = -g
