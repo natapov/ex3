@@ -1,6 +1,25 @@
 #include "date_wrap.h"
 
-bool operator==(const DateWrap& date1, const DateWrap& date2)
-{
-	return date1.dateWrapCompare(date2) == 0;
+
+
+int DateWrap::dateWrapCompare(const DateWrap& date) const{
+	return dateCompare(this->turnIntoDate(), date.turnIntoDate());
+}
+bool DateWrap::operator==(const DateWrap& date)const{
+		return this->dateWrapCompare(date) == 0;
+}
+bool DateWrap::operator!=(const DateWrap& date)const{
+	return this->dateWrapCompare(date) != 0;
+}
+bool DateWrap::operator<=(const DateWrap& date)const{
+	return this->dateWrapCompare(date) <= 0;
+}
+bool DateWrap::operator>=(const DateWrap& date)const{
+	return this->dateWrapCompare(date) >= 0;
+}
+bool DateWrap::operator<(const DateWrap& date)const{
+	return this->dateWrapCompare(date) < 0;
+}
+bool DateWrap::operator>(const DateWrap& date)const{
+	return this->dateWrapCompare(date) > 0;
 }
