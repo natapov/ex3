@@ -3,9 +3,9 @@
 
 #include <iostream>
 
-//extern "C"{
+extern "C"{
 	#include "date.h"
-//}
+}
 
 using std::ostream;
 

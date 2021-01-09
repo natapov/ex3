@@ -4,11 +4,12 @@ EXEC_CPP = test_partA.cpp
 EXEC_MAIN = test.o
 EXEC_OBJS = date.o date_wrap.o 
 DEBUG_FLAG = -g
-COMP_FLAG = -std=c++11 -Wall -Werror -pedantic-errors 
+COMP_FLAG = -std=c++11 -Wall -Werror -pedantic-errors
+COMP_FLAG_C = -std=c99 -Wall -Werror -pedantic-errors 
 
 #OBJECT FILES: right hand side should be source files only
 date.o : date.c date.h
-	$(CC) -c $(DEBUG_FLAG) $(COMP_FLAG) $*.c
+	gcc -c $(DEBUG_FLAG) $(COMP_FLAG_C) $*.c
 
 date_wrap.o : date_wrap.cpp date_wrap.h
 	$(CC) -c $(DEBUG_FLAG) $(COMP_FLAG) $*.cpp
