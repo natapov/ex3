@@ -1,15 +1,17 @@
 #ifndef DATE_WARP_H_
 #define DATE_WARP_H_
-
 #include <iostream>
 
+namespace mtm
+{
+	class DateWrap;
+}
 extern "C"{
 	#include "date.h"
 }
-
 using std::ostream;
 
-class DateWrap{
+class mtm::DateWrap{
 	int day_data;
 	int month_data;
 	int year_data;
@@ -25,12 +27,12 @@ public:
 	int month() const;
 	int year() const;
 
-	bool operator==(const DateWrap& date)const;
-	bool operator!=(const DateWrap& date)const;
-	bool operator<=(const DateWrap& date)const;
-	bool operator>=(const DateWrap& date)const;
-	bool operator<(const DateWrap& date)const;
-	bool operator>(const DateWrap& date)const;
+	bool operator==(const DateWrap& date) const;
+	bool operator!=(const DateWrap& date) const;
+	bool operator<=(const DateWrap& date) const;
+	bool operator>=(const DateWrap& date) const;
+	bool operator<(const DateWrap& date) const;
+	bool operator>(const DateWrap& date) const;
 	DateWrap operator++(int);
 	DateWrap operator+=(int days);
 	DateWrap operator+(int days) const;

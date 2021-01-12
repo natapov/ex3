@@ -1,6 +1,7 @@
 #include "date_wrap.h"
 const int DAYS_IN_MONTH = 30;
 const int MONTHS_IN_YEAR = 12;
+using mtm::DateWrap;
 
 DateWrap::DateWrap(int day, int month, int year): day_data(day), month_data(month), year_data(year){}
 
