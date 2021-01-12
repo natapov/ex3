@@ -1,6 +1,9 @@
 #ifndef DATE_WARP_H_
 #define DATE_WARP_H_
+
 #include <iostream>
+
+#include "exceptions.h"
 
 namespace mtm
 {
@@ -10,6 +13,7 @@ extern "C"{
 	#include "date.h"
 }
 using std::ostream;
+using mtm::NegativeDays;
 
 class mtm::DateWrap{
 	int day_data;

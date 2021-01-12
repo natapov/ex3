@@ -64,6 +64,10 @@ DateWrap DateWrap::operator++(int)
 
 DateWrap DateWrap::operator+=(int days)
 {
+	if(days < 0)
+	{
+		throw NegativeDays();
+	}
 	for (int i = 0; i < days; i++)
 	{
 		(*this)++;
@@ -73,6 +77,10 @@ DateWrap DateWrap::operator+=(int days)
 
 DateWrap DateWrap::operator+(int days) const
 {
+	if(days < 0)
+	{
+		throw NegativeDays();
+	}
 	DateWrap copy(*this);
 	return copy+=days;
 }
