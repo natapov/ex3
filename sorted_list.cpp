@@ -10,14 +10,15 @@ List::Node::Node(T value): value(value), next(NULL) {}
 List::List(): size(0), head(NULL) {}
 List::List(const List& list): size(list.size)
 {
-    if(this->size > 0)
+    if(list.size > 0)
     {
+        assert(list.head);
         this->head = new Node(list.head->value);
         Node* current_copy_node = this->head;
         Node* current_original_node = list.head;
         while(current_original_node->next)
         {
-            current_copy_node->next = new Node(current_original_node->value);
+            current_copy_node->next = new Node(current_original_node->next->value);
 
             current_copy_node = current_copy_node->next;
             current_original_node = current_original_node->next;

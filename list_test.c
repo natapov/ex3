@@ -10,7 +10,8 @@ using std::endl;
 
 using mtm::List;
 using mtm::ValueNotInList;
-void print_list(List l)
+
+void print_list(List& l)
 {
     cout << "The list is: ";
     for (List::ListIterator i = l.begin(); i != l.end(); ++i)
@@ -18,7 +19,6 @@ void print_list(List l)
         cout << *i << " ";
     }
     cout << endl;
-    
 }
 
 List create_long_list()
@@ -27,7 +27,7 @@ List create_long_list()
     for (int i = 10; i > 0; i--)
     {
         l.add(i);
-        cout << i << ": " << endl;
+        print_list(l);
     }
     return l;
     
