@@ -26,7 +26,7 @@ List create_long_list()
     List l = List();
     for (int i = 10; i > 0; i--)
     {
-        l.add(i);
+        l.add(i);   
         print_list(l);
     }
     return l;
@@ -63,4 +63,18 @@ int main()
 
     List l1(l);
     print_list(l1);
+    l1 = l;
+    print_list(l1);
+    l1.remove(10);
+    print_list(l1);
+    l1.remove(1);
+    l1.remove(2);
+    l1.remove(4);
+    l1.remove(5);
+    l1.remove(6);
+    print_list(l1);
+    l1.remove(7);
+    l1.add(1);
+    print_list(l1);
+
 }

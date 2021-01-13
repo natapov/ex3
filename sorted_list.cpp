@@ -28,7 +28,6 @@ List::List(const List& list): size(list.size)
     {
         this->head = NULL;
     }
-    
 }
 
 List& List::operator=(const List& list)
