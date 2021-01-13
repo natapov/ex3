@@ -9,6 +9,11 @@ namespace mtm
     class List;
 }
 using mtm::List;
+
+//Type Y should support these operations:
+// == operator
+// T(const T&) - copy constructor
+// < operator
 typedef int T;
 class List
 {
