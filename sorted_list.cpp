@@ -1,9 +1,14 @@
 #include <assert.h>
 #include <stdlib.h>
-#include <sorted_list.h>
+
+#include "sorted_list.h"
+
+using mtm::List;
 
 List::Node::Node(T value, Node* next): value(value), next(next) {}
 List::Node::Node(T value): value(value), next(NULL) {}
+
+List::List(): size(0), head(NULL) {}
 bool List::contains(T element)
 {
     Node* current = head;
@@ -47,44 +52,60 @@ void List::add(T element)
 }
 void List::remove(T element)//currently removes the first occurents of element
 {
-    Node *new_node = new Node(element);
-    Node *current = head;
-    if(!current)
+    if(!this->head)
     {
-        throw valueNotInList();
+        throw ValueNotInList();
     }
-    Node* last;
-    while(current-> && current->next->value != new_node->value)
+    if(this->head->value == element)
     {
-        
+        Node* temp = this->head;
+        this->head = temp->next;
+        delete temp;
+        this->size--;
+        return;
     }
-    
-}
-List::ListIterator begin()
-{
-    return ListIterator(this->current);
+    Node *current = this->head;
+    while(current->next)
+    {
+        if(current->next->value == element)
+        {
+            Node* temp = current->next;
+            current->next = current->next->next;
+            this->size--;
+            delete temp;
+            return;
+        }
+        current = current->next;
+    }
+    throw ValueNotInList();
 }
 
-List::ListIterator end()
+List::ListIterator List::begin()
 {
-    return ListIterator(NULL);
+    return List::ListIterator(this->head);
 }
 
-List::ListIterator::ListIterator(const List& list) :current(list.head){}
-const T* List::ListIterator::operator*() const
+List::ListIterator List::end()
+{
+    return List::ListIterator(NULL);
+}
+
+List::ListIterator::ListIterator(Node* node) :current(node){}
+
+const T List::ListIterator::operator*() const
 {
     return this->current->value;
 }
-ListIterator& List::ListIterator::operator++()
+List::ListIterator& List::ListIterator::operator++()
 {
     this->current = this->current->next;
     return *this;
 }
-bool ListIterator::operator==(const ListIterator& other)
+bool List::ListIterator::operator==(const List::ListIterator& other)
 {
-    return this->current == other->current;
+    return this->current == other.current;
 }
-bool ListIterator::operator!=(const ListIterator& other)
+bool List::ListIterator::operator!=(const List::ListIterator& other)
 {
     return !(*this==other);
 }

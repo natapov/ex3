@@ -1,6 +1,14 @@
 #ifndef SORTED_LIST_H
 #define SORTER_LIST_H
 
+#include "exceptions.h"
+using mtm::ValueNotInList;
+
+namespace mtm
+{
+    class List;
+}
+using mtm::List;
 typedef int T;
 class List
 {
@@ -21,13 +29,14 @@ public:
         private:
             Node* current;
         public:
-            ListIterator(const Node* node);
-            const T* operator*() const;
+            ListIterator(Node* node);
+            const T operator*() const;
             ListIterator& operator++();
             bool operator==(const ListIterator& other);
             bool operator!=(const ListIterator& other);
     };
-
+public:
+    List();
     int get_size(){
         return size;
     }
