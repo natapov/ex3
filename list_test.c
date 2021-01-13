@@ -3,7 +3,6 @@
 
 #include <iostream>
 
-
 #include "sorted_list.h"
 
 using std::cout;
@@ -22,13 +21,46 @@ void print_list(List l)
     
 }
 
-int main()
+List create_long_list()
 {
     List l = List();
-    l.add(1);
+    for (int i = 10; i > 0; i--)
+    {
+        l.add(i);
+        cout << i << ": " << endl;
+    }
+    return l;
+    
+}
+
+void print_contains(List l, int i)
+{
+    if(l.contains(i))
+    {
+        cout << "List contains the number " << i << endl;
+    }
+    else
+    {
+        cout << "List does not contain number" << i << endl;
+    }
+    
+}
+
+int main()
+{
+    List l = create_long_list();
     print_list(l);
-    cout << l.contains(1) << endl;
-    l.remove(1);
-    cout << l.contains(1)<<endl;
-    return 0;
+    l.remove(3);
+    print_list(l);
+    l.remove(8);
+    print_list(l);
+    l.remove(9);
+    print_list(l);
+    print_contains(l, 1);
+    print_contains(l, 18);
+    print_contains(l, 10);
+    print_contains(l, 8);
+
+    List l1(l);
+    print_list(l1);
 }

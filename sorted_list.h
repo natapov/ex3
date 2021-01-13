@@ -37,6 +37,8 @@ public:
     };
 public:
     List();
+    List(const List& list);
+    List& operator=(const List& list);
     int get_size(){
         return size;
     }
@@ -45,6 +47,7 @@ public:
     void add(T element);
     ListIterator begin();
     ListIterator end();
+    ~List();
 };
 
 #endif

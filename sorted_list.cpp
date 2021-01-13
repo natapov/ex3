@@ -1,6 +1,5 @@
 #include <assert.h>
 #include <stdlib.h>
-
 #include "sorted_list.h"
 
 using mtm::List;
@@ -9,6 +8,59 @@ List::Node::Node(T value, Node* next): value(value), next(next) {}
 List::Node::Node(T value): value(value), next(NULL) {}
 
 List::List(): size(0), head(NULL) {}
+List::List(const List& list): size(list.size)
+{
+    if(this->size > 0)
+    {
+        this->head = new Node(list.head->value);
+        Node* current_copy_node = this->head;
+        Node* current_original_node = list.head;
+        while(current_original_node->next)
+        {
+            current_copy_node->next = new Node(current_original_node->value);
+
+            current_copy_node = current_copy_node->next;
+            current_original_node = current_original_node->next;
+        }
+    }
+    else
+    {
+        this->head = NULL;
+    }
+    
+}
+
+List& List::operator=(const List& list)
+{
+    if(this == &list)
+    {
+        return *this;
+    }
+    Node *new_head = NULL;
+    if(list.size != 0)
+    {
+        assert(list.head);
+        new_head = new Node(list.head->value);
+        Node* current_list_node = list.head;
+        Node* current_new_head_node = new_head;
+        while(current_list_node->next)
+        {
+            current_new_head_node->next = new Node(current_list_node->next->value);
+            current_new_head_node = current_new_head_node->next;
+            current_list_node = current_list_node->next;
+        }
+    }
+    while(this->head)
+    {
+        Node* temp = this->head;
+        this->head = this->head->next;
+        delete temp;
+    }
+    this->head = new_head;
+    this->size = list.size;
+    return *this;
+    
+}
 bool List::contains(T element)
 {
     Node* current = head;
@@ -26,11 +78,11 @@ bool List::contains(T element)
 void List::add(T element)
 {
     Node *new_node = new Node(element);
-    Node *current = head;
+    Node *current = this->head;
     if(!current)
     {
         assert(this->size == 0);
-        head = new_node;
+        this->head = new_node;
         this->size++;
         return;
     }
@@ -47,8 +99,7 @@ void List::add(T element)
     }
     new_node->next = current->next;
     current->next = new_node;
-    size++;
-    return;
+    this->size++;
 }
 void List::remove(T element)//currently removes the first occurents of element
 {
@@ -78,6 +129,15 @@ void List::remove(T element)//currently removes the first occurents of element
         current = current->next;
     }
     throw ValueNotInList();
+}
+List::~List()
+{
+    while(this->head)
+    {
+        Node *temp = this->head;
+        this->head = this->head->next;
+        delete temp;
+    }
 }
 
 List::ListIterator List::begin()
