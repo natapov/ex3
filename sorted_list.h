@@ -1,6 +1,19 @@
 #ifndef SORTED_LIST_H
 #define SORTER_LIST_H
 
+#include "exceptions.h"
+using mtm::ValueNotInList;
+
+namespace mtm
+{
+    class List;
+}
+using mtm::List;
+
+//Type Y should support these operations:
+// == operator
+// T(const T&) - copy constructor
+// < operator
 typedef int T;
 class List
 {
@@ -21,13 +34,16 @@ public:
         private:
             Node* current;
         public:
-            ListIterator(const Node* node);
-            const T* operator*() const;
+            ListIterator(Node* node);
+            const T operator*() const;
             ListIterator& operator++();
             bool operator==(const ListIterator& other);
             bool operator!=(const ListIterator& other);
     };
-
+public:
+    List();
+    List(const List& list);
+    List& operator=(const List& list);
     int get_size(){
         return size;
     }
@@ -36,6 +52,7 @@ public:
     void add(T element);
     ListIterator begin();
     ListIterator end();
+    ~List();
 };
 
 #endif
