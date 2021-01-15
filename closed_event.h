@@ -1,16 +1,25 @@
-#include "base_event.h"
 #ifndef CLOSED_EVENT_H_
 #define CLOSED_EVENT_H_
 
-class ClosedEvent : BaseEvent
+#include "base_event.h"
+#include "sorted_list.h"
+#include "exceptions.h"
+
+namespace mtm
 {
+    class ClosedEvent;
+}
+class mtm::ClosedEvent : BaseEvent
+{
+    List invitees;
 public:
-    BaseEvent(std::string name, mtm::DateWrap date);
+    ClosedEvent(std::string name, mtm::DateWrap date);
     void registerParticipant(int participant);
     void unregisterParticipant(int participant);
+    void addInvitee(int student);
     std::ostream& printShort(std::ostream& out);
     std::ostream& printLong(std::ostream& out);
-    BaseEvent* clone() const;
-}
+    ClosedEvent* clone() const override;
+};
 
 #endif

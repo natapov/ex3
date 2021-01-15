@@ -1,26 +1,34 @@
 #ifndef BASE_EVENT_H_
 #define BASE_EVENT_H_
-#include <ostream>
+
+#include <iostream>
 #include <string>
 
 #include "date_wrap.h"
 #include "sorted_list.h"
+#include "exceptions.h"
 
-class BaseEvent
+namespace mtm
 {
-    string name;
-    DateWrap date;
+    class BaseEvent;
+}
+class mtm::BaseEvent
+{
+protected:
+    std::string name;
+    mtm::DateWrap date;
     List participants;
 public:
+    const static int MIN_STUDENT = 1;
+    const static int MAX_STUDENT = 1234567890;
     BaseEvent(std::string name, mtm::DateWrap date);
-    void registerParticipant(int participant);
+    virtual void registerParticipant(int participant);
     void unregisterParticipant(int participant);
-    std::ostream& printShort(std::ostream& out);
-    std::ostream& printLong(std::ostream& out);
-    BaseEvent* clone() const;
+    std::ostream& printShort(std::ostream& out) const;
+    std::ostream& printLong(std::ostream& out) const;
+    virtual BaseEvent* clone() const = 0;
+};
     
-
-
     //code to later add to real event iterator implementation
     // class EventIterator
     // {
