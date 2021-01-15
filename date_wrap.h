@@ -2,9 +2,7 @@
 #define DATE_WARP_H_
 
 #include <iostream>
-
 #include "exceptions.h"
-
 namespace mtm
 {
 	class DateWrap;
@@ -12,8 +10,6 @@ namespace mtm
 extern "C"{
 	#include "date.h"
 }
-using std::ostream;
-using mtm::NegativeDays;
 
 class mtm::DateWrap{
 	int day_data;
@@ -41,6 +37,6 @@ public:
 	DateWrap operator+=(int days);
 	DateWrap operator+(int days) const;
 	friend DateWrap operator+(int days, const DateWrap& date);
-	friend ostream& operator<<(ostream& os, const DateWrap& date);
+	friend std::ostream& operator<<(std::ostream& os, const DateWrap& date);
 };
 #endif

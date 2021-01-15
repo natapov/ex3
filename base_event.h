@@ -4,9 +4,7 @@
 #include <string>
 
 #include "date_wrap.h"
-
-using std::string
-using std::ostream
+#include "sorted_list.h"
 
 class BaseEvent
 {
@@ -14,14 +12,35 @@ class BaseEvent
     DateWrap date;
     List participants;
 public:
-    BaseEvent(string name, DateWrap date);
-    void registerParticipant(int participent);
-    void unregisterParticipant(int participent);
-    ostream& printShort(ostream& out);
-    ostream& printLong(ostream& out);
-    BaseEvent* clone();}
+    BaseEvent(std::string name, mtm::DateWrap date);
+    void registerParticipant(int participant);
+    void unregisterParticipant(int participant);
+    std::ostream& printShort(std::ostream& out);
+    std::ostream& printLong(std::ostream& out);
+    BaseEvent* clone() const;
+    
 
 
+    //code to later add to real event iterator implementation
+    // class EventIterator
+    // {
+    //     List::ListIterator iterator;
+    //     public:
+    //     EventIterator(ListIterator list): iterator(list){}
+    //     EventIterator operator++()
+    //     {
+    //         this->list++;
+    //     }
+        
+    // }
+
+    // EventIterator begin()
+    // {
+    //     EventIterator(list.begin())
+    // }
+    
+    
+// }
 
 
 #endif

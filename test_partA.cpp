@@ -1,7 +1,7 @@
 #include "date_wrap.h"
-//#include "exceptions.h"
+#include "exceptions.h"
 #include <iostream>
-//using mtm::DateWrap;
+using mtm::DateWrap;
 using std::cout;
 using std::endl;
 
@@ -12,7 +12,7 @@ int main() {
 
 
 
-/** 
+
     DateWrap date(30, 11, 2020);
     print(date);
     print(date + 4);
@@ -35,6 +35,5 @@ int main() {
     } catch (mtm::NegativeDays) {
         print("NegativeDays");
     }
-    **/
     return 0;
 }

@@ -59,7 +59,6 @@ List& List::operator=(const List& list)
     this->head = new_head;
     this->size = list.size;
     return *this;
-    
 }
 bool List::contains(T element)
 {
