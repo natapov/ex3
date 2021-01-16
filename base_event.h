@@ -5,7 +5,7 @@
 #include <string>
 
 #include "date_wrap.h"
-#include "sorted_list.h"
+#include "list.h"
 #include "exceptions.h"
 
 namespace mtm
@@ -22,6 +22,7 @@ public:
     const static int MIN_STUDENT = 1;
     const static int MAX_STUDENT = 1234567890;
     BaseEvent(std::string name, mtm::DateWrap date);
+    virtual ~BaseEvent(){}
     virtual void registerParticipant(int participant);
     void unregisterParticipant(int participant);
     std::ostream& printShort(std::ostream& out) const;
@@ -46,9 +47,7 @@ public:
     // {
     //     EventIterator(list.begin())
     // }
-    
-    
-// }
+
 
 
 #endif

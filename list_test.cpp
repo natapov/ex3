@@ -2,12 +2,10 @@
 
 
 #include <iostream>
-
 #include "sorted_list.h"
 
 using std::cout;
 using std::endl;
-
 using mtm::List;
 using mtm::ValueNotInList;
 

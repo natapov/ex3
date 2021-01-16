@@ -2,14 +2,14 @@
 #define CLOSED_EVENT_H_
 
 #include "base_event.h"
-#include "sorted_list.h"
+#include "list.h"
 #include "exceptions.h"
 
 namespace mtm
 {
     class ClosedEvent;
 }
-class mtm::ClosedEvent : BaseEvent
+class mtm::ClosedEvent : public BaseEvent
 {
     List invitees;
 public:

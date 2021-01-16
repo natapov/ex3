@@ -30,13 +30,13 @@ void BaseEvent::unregisterParticipant(int participant)
     }
     participants.remove(participant);
 }
-
+/**
 BaseEvent* BaseEvent::clone() const
 {
     BaseEvent* cloned_event = new BaseEvent(this->name, this->date);
     cloned_event->participants = this->participants;
     return cloned_event;
-}
+}**/
 ostream& BaseEvent::printShort(ostream& out) const
 {
     out << name << " " << date;
