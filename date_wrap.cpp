@@ -84,16 +84,19 @@ DateWrap DateWrap::operator+(int days) const
 		throw NegativeDays();
 	}
 	DateWrap copy(*this);
-	return copy+=days;
+	return copy += days;
+}
+namespace mtm
+{
+	DateWrap operator+(int days, const DateWrap& date)
+	{
+		return date + days;
+	}
+	ostream& operator<<(ostream& os, const DateWrap& date)
+	{
+		os << date.day() << "/"  << date.month() << "/" << date.year();
+		return os;
+	}
 }
 
-DateWrap operator+(int days, const DateWrap& date)
-{
-	return date + days;
-}
-ostream& operator<<(ostream& os, const DateWrap& date)
-{
-	os << date.day() << "/"  << date.month() << "/" << date.year();
-	return os;
-}
 

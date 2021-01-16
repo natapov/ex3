@@ -1,6 +1,6 @@
+#include <iostream>
 #include "date_wrap.h"
 #include "exceptions.h"
-#include <iostream>
 using mtm::DateWrap;
 using std::cout;
 using std::endl;
@@ -8,11 +8,6 @@ using std::endl;
 template <class T> void print(const T& x) { cout << x << endl; }
 
 int main() {
-
-
-
-
-
     DateWrap date(30, 11, 2020);
     print(date);
     print(date + 4);

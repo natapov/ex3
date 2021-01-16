@@ -1,5 +1,5 @@
 #ifndef SORTED_LIST_H
-#define SORTER_LIST_H
+#define SORTED_LIST_H
 
 #include "exceptions.h"
 using mtm::ValueNotInList;
@@ -50,8 +50,8 @@ public:
     void remove(T element);
     bool contains(T element);
     void add(T element);
-    ListIterator begin();
-    ListIterator end();
+    ListIterator begin() const;
+    ListIterator end() const;
     ~List();
 };
 

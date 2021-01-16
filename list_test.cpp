@@ -1,4 +1,4 @@
-//compile with g++ -std=c++11 -Wall -Werror -pedantic-errors -g  -o test_list list_test.c sorted_list.h sorted_list.cpp
+//compile with g++ -std=c++11 -Wall -Werror -pedantic-errors -g  -o test_list list_test.cpp sorted_list.h sorted_list.cpp
 
 
 #include <iostream>
