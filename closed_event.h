@@ -9,7 +9,7 @@ namespace mtm
 {
     class ClosedEvent;
 }
-class mtm::ClosedEvent : public BaseEvent
+class mtm::ClosedEvent : public mtm::BaseEvent
 {
     List invitees;
 public:

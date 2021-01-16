@@ -11,7 +11,7 @@ using mtm::InvalidStudent;
 BaseEvent::BaseEvent(string name, DateWrap date): name(name), date(date), participants(){}
 void BaseEvent::registerParticipant(int participant)
 {
-    if (participant > this->MAX_STUDENT || participant < this->MAX_STUDENT)
+    if (participant > this->MAX_STUDENT || participant < this->MIN_STUDENT)
     {
         throw InvalidStudent();
     }
@@ -24,7 +24,7 @@ void BaseEvent::registerParticipant(int participant)
 
 void BaseEvent::unregisterParticipant(int participant)
 {
-    if (participant > this->MAX_STUDENT || participant < this->MAX_STUDENT)
+    if (participant > this->MAX_STUDENT || participant < this->MIN_STUDENT)
     {
         throw InvalidStudent();
     }

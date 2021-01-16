@@ -8,20 +8,35 @@ using std::string;
 using mtm::CustomEvent;
 using mtm::OpenEvent;
 using mtm::DateWrap;
-
+struct Function
+{
+    bool operator()(int n){
+        return n%2 == 0;
+    }
+};
 int main()
 {
     DateWrap date(1, 2, 3);
-    CanRegister can;
-    bool ret = can(13);
-    cout << ret << endl;
     string s = "Party";
     OpenEvent event(s, date);
+    event.registerParticipant(1234);
+    event.registerParticipant(4321);
+    event.registerParticipant(1);
+    event.registerParticipant(2);
     event.printLong(cout);
-
-    CustomEvent event1(s, date, can);
+    date+= 3245342;
+    Function f;
+    CustomEvent<Function> event1(s, date, f);
     
+    event1.registerParticipant(1234);
+    event1.registerParticipant(432);
+    event1.registerParticipant(024);
+    event1.registerParticipant(2);
     event1.printLong(cout);
+
+ 
+
+
    // CustomEvent event(s, date, can);
     /**
     DateWrap date1(1, 2, 3);

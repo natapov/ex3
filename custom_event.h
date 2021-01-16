@@ -5,18 +5,11 @@
 
 namespace mtm
 {
+    template <class CanRegister>
     class CustomEvent;
 }
 
-class CanRegister
-{
-public:
-    bool operator()(int id) const
-    {
-        return true;
-    }
-};
-
+template <typename CanRegister>
 class mtm::CustomEvent: public mtm::BaseEvent
 {
 private:
@@ -31,7 +24,33 @@ public:
     std::ostream& printLong(std::ostream& out);
     **/
     CustomEvent* clone() const override;
-    
 };
 
+namespace mtm 
+{
+    template <typename  CanRegister>
+    CustomEvent<CanRegister>::CustomEvent(std::string name, mtm::DateWrap date, CanRegister function): BaseEvent(name, date), can_register(function) {}
+
+    template <typename  CanRegister>
+    void CustomEvent<CanRegister>::registerParticipant(int participant) 
+    {
+        if(this->can_register(participant))
+        {
+            BaseEvent::registerParticipant(participant);
+        }
+        else
+        {
+            throw RegistrationBlocked();
+        }
+
+    }
+
+    template <typename  CanRegister>
+    CustomEvent<CanRegister>* CustomEvent<CanRegister>::clone() const
+    {
+        CustomEvent* cloned_event = new CustomEvent(this->name, this->date, this->can_register);
+        cloned_event->participants = this->participants;
+        return cloned_event;
+    }
+}
 #endif
