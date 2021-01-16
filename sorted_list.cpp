@@ -139,12 +139,12 @@ List::~List()
     }
 }
 
-List::ListIterator List::begin()
+List::ListIterator List::begin() const
 {
     return List::ListIterator(this->head);
 }
 
-List::ListIterator List::end()
+List::ListIterator List::end () const
 {
     return List::ListIterator(NULL);
 }
