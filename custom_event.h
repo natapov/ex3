@@ -45,7 +45,7 @@ namespace mtm
 
     }
 
-    template <typename  CanRegister>
+    template <typename CanRegister>
     CustomEvent<CanRegister>* CustomEvent<CanRegister>::clone() const
     {
         CustomEvent* cloned_event = new CustomEvent(this->name, this->date, this->can_register);

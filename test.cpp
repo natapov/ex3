@@ -36,15 +36,4 @@ int main()
 
  
 
-
-   // CustomEvent event(s, date, can);
-    /**
-    DateWrap date1(1, 2, 3);
-    DateWrap date2(1, 2, 2);
-    bool result =(date == date1);
-    cout << "result :"<< result << endl;
-    result =(date == date2);
-    cout << "result :"<< result << endl;
-    return 0;
-    **/
 }
