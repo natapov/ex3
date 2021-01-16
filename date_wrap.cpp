@@ -1,6 +1,9 @@
 #include "date_wrap.h"
 const int DAYS_IN_MONTH = 30;
 const int MONTHS_IN_YEAR = 12;
+using mtm::DateWrap;
+using std::ostream;
+using mtm::NegativeDays;
 
 DateWrap::DateWrap(int day, int month, int year): day_data(day), month_data(month), year_data(year){}
 
@@ -25,7 +28,7 @@ int DateWrap::dateWrapCompare(const DateWrap& date) const{
 	return compare_result;
 }
 bool DateWrap::operator==(const DateWrap& date)const{
-		return this->dateWrapCompare(date) == 0;
+	return this->dateWrapCompare(date) == 0;
 }
 bool DateWrap::operator!=(const DateWrap& date)const{
 	return this->dateWrapCompare(date) != 0;
@@ -63,6 +66,10 @@ DateWrap DateWrap::operator++(int)
 
 DateWrap DateWrap::operator+=(int days)
 {
+	if(days < 0)
+	{
+		throw NegativeDays();
+	}
 	for (int i = 0; i < days; i++)
 	{
 		(*this)++;
@@ -72,6 +79,10 @@ DateWrap DateWrap::operator+=(int days)
 
 DateWrap DateWrap::operator+(int days) const
 {
+	if(days < 0)
+	{
+		throw NegativeDays();
+	}
 	DateWrap copy(*this);
 	return copy+=days;
 }
