@@ -26,8 +26,8 @@ private:
     {
         T value;
         Node* next;
-        Node(T value);
-        Node(T value, Node *next);
+        Node(T value): value(value), next(NULL) {}
+        Node(T value, Node* next): value(value), next(next) {}
     };
     
     int size;
@@ -38,41 +38,36 @@ public:
         private:
             Node* current;
         public:
-            ListIterator(Node* node);
-            const T operator*() const;
-            ListIterator& operator++();
-            bool operator==(const ListIterator& other);
-            bool operator!=(const ListIterator& other);
+            ListIterator(Node* node) :current(node){}
+            const T operator*() const{
+                return this->current->value;
+            }
+            ListIterator& operator++(){
+               this->current = this->current->next;
+               return *this;
+            }
+            bool operator==(const ListIterator& other){
+                return this->current == other.current;
+            }
+            bool operator!=(const ListIterator& other)
+            {
+                return !(*this==other);
+            }
     };
 public:
-    List();
-    List(const List& list);
-    List& operator=(const List& list);
-    int get_size(){
-        return size;
-    }
-    void remove(T element);
-    bool contains(T element);
-    void add(T element);
-    ListIterator begin() const;
-    ListIterator end() const;
-    ~List();
-};
+    List(): size(0), head(NULL) {}
 
-
-namespace 
+    ~List()
     {
-    template <typename T>
-    typename List<T>::Node::Node(T value, Node* next): value(value), next(next) {}
+        while(this->head)
+        {
+            Node *temp = this->head;
+            this->head = this->head->next;
+            delete temp;
+        }
+    }
 
-    template <typename T>
-    List<T>::Node<T>::Node(T value): value(value), next(NULL) {}
-
-    template <typename T>
-    List<T>::List(): size(0), head(NULL) {}
-
-    template <typename T>
-    List<T>::List(const List<T>& list): size(list.size)
+    List(const List& list): size(list.size)
     {
         if(list.size > 0)
         {
@@ -94,8 +89,7 @@ namespace
         }
     }
 
-    template <typename T>
-    List<T>& List<T>::operator=(const List<T>& list)
+    List& operator=(const List& list)
     {
         if(this == &list)
         {
@@ -125,9 +119,8 @@ namespace
         this->size = list.size;
         return *this;
     }
-
-    template <typename T>
-    bool List<T>::contains(T element)
+    
+    bool contains(T element)
     {
         Node* current = head;
         while(current)
@@ -141,8 +134,7 @@ namespace
         return false;
     }
 
-    template <typename T>
-    void List<T>::add(T element)
+    void add(T element)
     {
         Node *new_node = new Node(element);
         Node *current = this->head;
@@ -168,9 +160,7 @@ namespace
         current->next = new_node;
         this->size++;
     }
-
-    template <typename T>
-    void List<T>::remove(T element)//currently removes the first occurence of element
+    void remove(T element)//currently removes the first occurents of element
     {
         if(!this->head)
         {
@@ -199,58 +189,16 @@ namespace
         }
         throw ValueNotInList();
     }
-
-    template <typename T>
-    List<T>::~List()
+    
+    ListIterator end() const
     {
-        while(this->head)
-        {
-            Node *temp = this->head;
-            this->head = this->head->next;
-            delete temp;
-        }
+        return ListIterator(NULL);
     }
 
-    template <typename T>
-    List<T>::ListIterator List<T>::begin() const
+    ListIterator begin() const
     {
-        return List::ListIterator(this->head);
+        return ListIterator(this->head);
     }
-
-    template <typename T>
-    List::ListIterator List<T>::end () const
-    {
-        return List::ListIterator(NULL);
-    }
-
-    template <typename T>
-    List<T>::ListIterator<T>::ListIterator(Node* node) :current(node){}
-
-    template <typename T>
-    const T List<T>::ListIterator<T>::operator*() const
-    {
-        return this->current->value;
-    }
-
-    template <typename T>
-    List<T>::ListIterator<T>& List<T>::ListIterator::operator++()
-    {
-        this->current = this->current->next;
-        return *this;
-    }
-
-    template <typename T>
-    bool List<T>::ListIterator::operator==(const List<T>::ListIterator& other)
-    {
-        return this->current == other.current;
-    }
-
-    template <typename T>
-    bool List<T>::ListIterator::operator!=(const List<T>::ListIterator& other)
-    {
-        return !(*this==other);
-    }
-}    
-
+};
 
 #endif

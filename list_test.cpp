@@ -2,26 +2,26 @@
 
 
 #include <iostream>
-#include "sorted_list.h"
+#include "List.h"
 
 using std::cout;
 using std::endl;
 using mtm::List;
 using mtm::ValueNotInList;
 
-void print_list(List& l)
+void print_list(List<int>& l)
 {
-    cout << "The list is: ";
-    for (List::ListIterator i = l.begin(); i != l.end(); ++i)
+    cout << "The List is: ";
+    for (List<int>::ListIterator i = l.begin(); i != l.end(); ++i)
     {
         cout << *i << " ";
     }
     cout << endl;
 }
 
-List create_long_list()
+List<int> create_long_list()
 {
-    List l = List();
+    List<int> l = List<int>();
     for (int i = 10; i > 0; i--)
     {
         l.add(i);   
@@ -31,7 +31,7 @@ List create_long_list()
     
 }
 
-void print_contains(List l, int i)
+void print_contains(List<int> l, int i)
 {
     if(l.contains(i))
     {
@@ -46,7 +46,7 @@ void print_contains(List l, int i)
 
 int main()
 {
-    List l = create_long_list();
+    List<int> l = create_long_list();
     print_list(l);
     l.remove(3);
     print_list(l);
@@ -59,7 +59,7 @@ int main()
     print_contains(l, 10);
     print_contains(l, 8);
 
-    List l1(l);
+    List<int> l1(l);
     print_list(l1);
     l1 = l;
     print_list(l1);
