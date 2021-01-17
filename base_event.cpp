@@ -46,8 +46,8 @@ ostream& BaseEvent::printShort(ostream& out) const
 ostream& BaseEvent::printLong(ostream& out) const
 {
     printShort(out) << endl;
-    List::ListIterator current = participants.begin();
-    List::ListIterator end = participants.end();
+    List<int>::ListIterator current = participants.begin();
+    List<int>::ListIterator end = participants.end();
     
     while(current != end)
     {

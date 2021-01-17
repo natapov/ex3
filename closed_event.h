@@ -11,7 +11,7 @@ namespace mtm
 }
 class mtm::ClosedEvent : public mtm::BaseEvent
 {
-    List invitees;
+    List<int> invitees;
 public:
     ClosedEvent(std::string name, mtm::DateWrap date);
     void registerParticipant(int participant);

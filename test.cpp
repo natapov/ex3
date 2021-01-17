@@ -34,6 +34,5 @@ int main()
     event1.registerParticipant(2);
     event1.printLong(cout);
 
- 
 
 }

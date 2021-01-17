@@ -17,7 +17,7 @@ class mtm::BaseEvent
 protected:
     std::string name;
     mtm::DateWrap date;
-    List participants;
+    List<int> participants;
 public:
     const static int MIN_STUDENT = 1;
     const static int MAX_STUDENT = 1234567890;
