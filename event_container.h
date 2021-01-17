@@ -25,49 +25,36 @@ public:
     class EventIterator
     {
         List<BaseEvent&>::ListIterator listIter;
-        public:
-        EventIterator(List<BaseEvent&>::ListIterator listIter): listIter(listIter){}
+    public:
+        EventIterator(List<BaseEvent&>::ListIterator listIter);
         
-        EventIterator operator++()
-        {
-            return ++(this->listIter);
-        }
-        const BaseEvent& operator*() const{
-            return *(this->listIter);
-        }
-
-        bool operator==(const EventIterator& iterator)
-        {
-            return this->listIter == iterator.listIter;
-        }
-
-        bool operator!=(const EventIterator& iterator)
-        {
-            return this->listIter != iterator.listIter;
-        }
+        EventIterator operator++();
+        const BaseEvent& operator*() const;
+        bool operator==(const EventIterator& iterator);
+        bool operator!=(const EventIterator& iterator);
     };
 };
 
 
-namespace mtm{
+// namespace mtm{
 
-EventContainer::EventContainer(): events(){}
+// EventContainer::EventContainer(): events(){}
 
-void EventContainer::add(BaseEvent& event)
-{
-    this->events.add(event);
-}
+// void EventContainer::add(BaseEvent& event)
+// {
+//     this->events.add(event);
+// }
 
-EventContainer::EventIterator EventContainer::begin()
-{
-    return EventIterator(this->events.begin());
-}
+// EventContainer::EventIterator EventContainer::begin()
+// {
+//     return EventIterator(this->events.begin());
+// }
 
 
-EventContainer::EventIterator EventContainer::end()
-{
-    return EventIterator(this->events.end());
-}
+// EventContainer::EventIterator EventContainer::end()
+// {
+//     return EventIterator(this->events.end());
+// }
 
-}
+// }
 #endif
