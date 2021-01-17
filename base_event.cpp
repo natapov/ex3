@@ -36,7 +36,8 @@ BaseEvent* BaseEvent::clone() const
     BaseEvent* cloned_event = new BaseEvent(this->name, this->date);
     cloned_event->participants = this->participants;
     return cloned_event;
-}**/
+}
+**/
 ostream& BaseEvent::printShort(ostream& out) const
 {
     out << name << " " << date;
@@ -56,3 +57,14 @@ ostream& BaseEvent::printLong(ostream& out) const
     }
     return out;
 }
+
+/**
+bool BaseEvent::operator<(const BaseEvent event) const
+{
+    return this->date < event.date;
+}
+bool BaseEvent::operator==(const BaseEvent event) const //currently compares name, this whill only be uset in List::contains this can change depends on what we need
+{
+    return this->name == event.name;
+}
+**/

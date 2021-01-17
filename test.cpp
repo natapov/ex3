@@ -23,6 +23,12 @@ int main()
     event.registerParticipant(4321);
     event.registerParticipant(1);
     event.registerParticipant(2);
+    event.registerParticipant(3);
+    
+
+    OpenEvent event3 = event;
+    event3.registerParticipant(43921);
+    event3.printLong(cout);
     event.printLong(cout);
     date+= 3245342;
     Function f;

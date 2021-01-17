@@ -24,6 +24,8 @@ public:
     std::ostream& printLong(std::ostream& out);
     **/
     CustomEvent* clone() const override;
+
+
 };
 
 namespace mtm 
