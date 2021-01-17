@@ -52,4 +52,4 @@ $(EXEC) : $(MAIN_OBJ) $(ALL_OBJS) #all objects should be here
 $(TEST_EVENTS) : $(TEST_EVENTS_OBJ) $(ALL_OBJS) 
 	$(CC) $(DEBUG_FLAG) $(TEST_EVENTS_OBJ) $(ALL_OBJS) -o $@
 clean :
-	rm -f $(MAIN_OBJ) $(ALL_OBJS) $(EXEC)
+	rm -f $(MAIN_OBJ) $(ALL_OBJS) $(EXEC) $(TEST_EVENTS_OBJ) test_list test_list.o $(TEST_EVENTS) 
