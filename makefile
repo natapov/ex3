@@ -1,6 +1,7 @@
 CC = g++
 EXEC = test #NAME OF FINAL EXECUTABLE
-
+TEST_EVENTS = test_events
+TEST_EVENTS_OBJ = test_events.o
 MAIN_CPP = list_test.cpp #CHANGE ME TO CHANGE THE CURRENT TEST FILE
 MAIN_OBJ = test.o
 
@@ -34,13 +35,21 @@ open_event.o : open_event.cpp open_event.h base_event.cpp base_event.h  list.h d
 closed_event.o : closed_event.cpp closed_event.h base_event.cpp base_event.h  list.h date_wrap.cpp date_wrap.h date.c date.h exceptions.h
 	$(CC) -c $(DEBUG_FLAG) $(COMP_FLAG) $*.cpp
 
+event_container.o: event_container.h list.h base_event.h base_event.cpp date_wrap.h date_wrap.cpp date.h date.c
+	$(CC) -c $(DEBUG_FLAG) $(COMP_FLAG) $*.h
+
 $(MAIN_OBJ) : $(MAIN_CPP)
 	$(CC) -c $(DEBUG_FLAG) $(COMP_FLAG) $(MAIN_CPP) -o $@
+
+$(TEST_EVENTS_OBJ) : test_events.cpp
+	$(CC) -c $(DEBUG_FLAG) $(COMP_FLAG) test_events.cpp -o $@
 
 #EXECUTABLES
 #NOT ALL OBJECT FILES ARE NECARRY FOR EVERY TEST BUT THIS WORKS TOO
 $(EXEC) : $(MAIN_OBJ) $(ALL_OBJS) #all objects should be here
 	$(CC) $(DEBUG_FLAG) $(MAIN_OBJ) $(ALL_OBJS) -o $@
 
+$(TEST_EVENTS) : $(TEST_EVENTS_OBJ) $(ALL_OBJS) 
+	$(CC) $(DEBUG_FLAG) $(TEST_EVENTS_OBJ) $(ALL_OBJS) -o $@
 clean :
 	rm -f $(MAIN_OBJ) $(ALL_OBJS) $(EXEC)

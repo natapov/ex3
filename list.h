@@ -24,10 +24,10 @@ class List
 private:
     struct Node
     {
-        T* value_p;
+        const T& value;
         Node* next;
-        Node(T value): value_p(new T(value)), next(NULL) {}
-        Node(T value, Node* next): value_p(new T(value)), next(next) {}
+        Node(const T& value): value(value), next(NULL) {}
+        Node(const T& value, Node* next): value(value), next(next) {}
     };
     
     int size;
@@ -39,8 +39,8 @@ public:
             Node* current;
         public:
             ListIterator(Node* node) :current(node){}
-            const T operator*() const{
-                return *(this->current->value_p);
+            const T& operator*() const{
+                return this->current->value;
             }
             ListIterator& operator++(){
                this->current = this->current->next;
@@ -63,7 +63,6 @@ public:
         {
             Node *temp = this->head;
             this->head = this->head->next;
-            delete temp->value_p;
             delete temp;
         }
     }
@@ -73,12 +72,12 @@ public:
         if(list.size > 0)
         {
             assert(list.head);
-            this->head = new Node(*(list.head->value_p));
+            this->head = new Node(list.head->value);
             Node* current_copy_node = this->head;
             Node* current_original_node = list.head;
             while(current_original_node->next)
             {
-                current_copy_node->next = new Node(*(current_original_node->next->value_p));
+                current_copy_node->next = new Node(current_original_node->next->value);
 
                 current_copy_node = current_copy_node->next;
                 current_original_node = current_original_node->next;
@@ -100,12 +99,12 @@ public:
         if(list.size != 0)
         {
             assert(list.head);
-            new_head = new Node(*(list.head->value_p));
+            new_head = new Node(list.head->value);
             Node* current_list_node = list.head;
             Node* current_new_head_node = new_head;
             while(current_list_node->next)
             {
-                current_new_head_node->next = new Node(*(current_list_node->next->value_p));
+                current_new_head_node->next = new Node(current_list_node->next->value);
                 current_new_head_node = current_new_head_node->next;
                 current_list_node = current_list_node->next;
             }
@@ -121,12 +120,12 @@ public:
         return *this;
     }
     
-    bool contains(T element)
+    bool contains(const T& element)
     {
         Node* current = head;
         while(current)
         {
-            if(element == *(current->value_p))
+            if(element == current->value)
             {
                 return true;
             }
@@ -135,7 +134,7 @@ public:
         return false;
     }
 
-    void add(T element)
+    void add(const T& element)
     {
         Node *new_node = new Node(element);
         Node *current = this->head;
@@ -146,14 +145,14 @@ public:
             this->size++;
             return;
         }
-        if(*(new_node->value_p) < *(current->value_p))
+        if(new_node->value < current->value)
         {
             new_node->next = current;
             this->head = new_node;
             this->size++;
             return;
         }
-        while(current->next && *(current->next->value_p) < *(new_node->value_p)) //SMALLER value IN THE BEGGINING 
+        while(current->next && current->next->value < new_node->value) //SMALLER value IN THE BEGGINING 
         {
             current = current->next;
         }
@@ -161,13 +160,13 @@ public:
         current->next = new_node;
         this->size++;
     }
-    void remove(T element)//currently removes the first occurents of element
+    void remove(const T& element)//currently removes the first occurents of element
     {
         if(!this->head)
         {
             throw ValueNotInList();
         }
-        if(*(this->head->value_p) == element)
+        if(this->head->value == element)
         {
             Node* temp = this->head;
             this->head = temp->next;
@@ -178,7 +177,7 @@ public:
         Node *current = this->head;
         while(current->next)
         {
-            if(*(current->next->value_p) == element)
+            if(current->next->value == element)
             {
                 Node* temp = current->next;
                 current->next = current->next->next;

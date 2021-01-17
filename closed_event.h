@@ -14,11 +14,12 @@ class mtm::ClosedEvent : public mtm::BaseEvent
     List<int> invitees;
 public:
     ClosedEvent(std::string name, mtm::DateWrap date);
-    void registerParticipant(int participant);
-    void unregisterParticipant(int participant);
+    void registerParticipant(int participant) override;
+    // void unregisterParticipant(int participant);
     void addInvitee(int student);
-    std::ostream& printShort(std::ostream& out);
-    std::ostream& printLong(std::ostream& out);
+    // std::ostream& printShort(std::ostream& out);
+    // std::ostream& printLong(std::ostream& out);
+    
     ClosedEvent* clone() const override;
 };
 

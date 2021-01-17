@@ -30,10 +30,10 @@ public:
 
 namespace mtm 
 {
-    template <typename  CanRegister>
+    template <typename CanRegister>
     CustomEvent<CanRegister>::CustomEvent(std::string name, mtm::DateWrap date, CanRegister function): BaseEvent(name, date), can_register(function) {}
 
-    template <typename  CanRegister>
+    template <typename CanRegister>
     void CustomEvent<CanRegister>::registerParticipant(int participant) 
     {
         if(this->can_register(participant))

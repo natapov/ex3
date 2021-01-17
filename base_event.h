@@ -29,8 +29,8 @@ public:
     std::ostream& printLong(std::ostream& out) const;
     virtual BaseEvent* clone() const = 0; //ZEEV removed pure virtual to allow taking BaseEvent as parameter 
 
-    // bool operator<(const BaseEvent event) const = 0; 
-    // bool operator==(const BaseEvent event) const = 0;
+    virtual bool operator<(const BaseEvent event) const = 0; 
+    virtual bool operator==(const BaseEvent event) const = 0;
 };
 
 

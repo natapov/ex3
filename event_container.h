@@ -3,6 +3,7 @@
 
 #include "list.h"
 #include "base_event.h"
+
 namespace mtm
 {
     class EventContainer;
@@ -10,39 +11,63 @@ namespace mtm
 
 class mtm::EventContainer
 {
-    List<BaseEvent> events;  
+private:
+    List<BaseEvent&> events;
+
+public:
+    class EventIterator;
+    EventContainer();
+    void add(BaseEvent& event);
+    EventIterator begin();
+    EventIterator end();
+    
+public:
     class EventIterator
     {
-        List<BaseEvent>::ListIterator listIter;
+        List<BaseEvent&>::ListIterator listIter;
         public:
-        EventIterator(ListIterator listIter): listIter(listIter){}
+        EventIterator(List<BaseEvent&>::ListIterator listIter): listIter(listIter){}
         
         EventIterator operator++()
         {
-            this->listIter++;
+            return ++(this->listIter);
         }
-        EventIterator begin()
-        {
-           EventIterator(listIter.begin())
+        const BaseEvent& operator*() const{
+            return *(this->listIter);
         }
-        EventIterator end()
-        {
-           EventIterator(listIter.end())
-        }
-    }
 
-    
+        bool operator==(const EventIterator& iterator)
+        {
+            return this->listIter == iterator.listIter;
+        }
 
-public:
-    EventContainer();
-    void add(BaseEvent& event);
-}
-mtm{
+        bool operator!=(const EventIterator& iterator)
+        {
+            return this->listIter != iterator.listIter;
+        }
+    };
+};
+
+
+namespace mtm{
+
+EventContainer::EventContainer(): events(){}
+
 void EventContainer::add(BaseEvent& event)
 {
-    events.add(event);
+    this->events.add(event);
 }
-void EventContainer::EventContainer(): List<EventContainer>{}
+
+EventContainer::EventIterator EventContainer::begin()
+{
+    return EventIterator(this->events.begin());
+}
+
+
+EventContainer::EventIterator EventContainer::end()
+{
+    return EventIterator(this->events.end());
+}
 
 }
 #endif

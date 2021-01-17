@@ -20,7 +20,6 @@ void ClosedEvent::registerParticipant(int participant)
     {
         BaseEvent::registerParticipant(participant);
     }
-
 }
 ClosedEvent* ClosedEvent::clone() const
 {
