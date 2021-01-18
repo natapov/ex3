@@ -35,7 +35,9 @@ EventContainer::EventIterator EventContainer::EventIterator::operator++()
 const BaseEvent& EventContainer::EventIterator::operator*() const{
     return *(this->listIter);
 }
-
+BaseEvent& EventContainer::EventIterator::operator*() {
+    return *(this->listIter);
+}
 bool EventContainer::EventIterator::operator==(const EventContainer::EventIterator& iterator)
 {
     return this->listIter == iterator.listIter;

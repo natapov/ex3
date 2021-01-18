@@ -16,8 +16,10 @@ private:
 
 public:
     class EventIterator;
-    EventContainer();
-    void add(BaseEvent& event);
+    EventContainer() ;
+    virtual ~EventContainer(){};
+    //virtual void add(BaseEvent& event) =0;
+    virtual void add(BaseEvent& event);
     EventIterator begin();
     EventIterator end();
     
@@ -30,6 +32,7 @@ public:
         
         EventIterator operator++();
         const BaseEvent& operator*() const;
+        BaseEvent& operator*();
         bool operator==(const EventIterator& iterator);
         bool operator!=(const EventIterator& iterator);
     };

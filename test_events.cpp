@@ -12,6 +12,7 @@ using mtm::CustomEvent;
 using mtm::OpenEvent;
 using mtm::ClosedEvent;
 using mtm::EventContainer;
+using mtm::BaseEvent;
 
 using mtm::DateWrap;
 struct Function
@@ -31,14 +32,14 @@ int main()
     event.registerParticipant(2);
     event.registerParticipant(3);
     
-
     OpenEvent event3 = event;
     event3.registerParticipant(43921);
     event3.printLong(cout);
     event.printLong(cout);
-    date+= 3245342;
+    
     cout <<"TESTING CLOSED EVENT \n";
-    ClosedEvent event4(s, date);
+    date++;
+    ClosedEvent event4("This is a closed event", date);
     event4.registerParticipant(1234);
     event4.registerParticipant(432);
     event4.addInvitee(24);
@@ -50,16 +51,16 @@ int main()
     event4.printLong(cout);
     event5.printLong(cout);
     
-    // cout <<"TESTING CUSTOM EVENT \n";
-    // date+= 3245342;
-    // Function f;
-    // CustomEvent<Function> event1(s, date, f);
+    cout <<"TESTING CUSTOM EVENT \n";
+    date++;
+    Function f;
+    CustomEvent<Function> event1("This is a custom event", date, f);
     
-    // event1.registerParticipant(1234);
-    // event1.registerParticipant(432);
-    // event1.registerParticipant(24);
-    // event1.registerParticipant(2);
-    // event1.printLong(cout);
+    event1.registerParticipant(1234);
+    event1.registerParticipant(432);
+    event1.registerParticipant(24);
+    event1.registerParticipant(2);
+    event1.printLong(cout);
     // CustomEvent<Function> event3 = event1;
     // event3.registerParticipant(43920);
     // event3.registerParticipant(43921);
@@ -69,13 +70,27 @@ int main()
 
     cout <<"TESTING EVENT CONTAINER \n";
 
-    EventContainer container;
-    container.add(event3);
-    container.add(event4);
-    container.add(event5);
-    for(EventContainer::EventIterator iter = container.begin(); iter != container.end(); ++iter)
+    EventContainer ec;
+    ec.add(event3);
+    ec.add(event4);
+    ec.add(event5);
+    ec.add(event1);
+    for(EventContainer::EventIterator iter = ec.begin(); iter != ec.end(); ++iter)
     {
+        (*iter).registerParticipant(111112);
         (*iter).printLong(cout);
     }
+    EventContainer::EventIterator it = ec.begin();
+    EventContainer::EventIterator it_end = ec.end();
+    BaseEvent& ev = *it; // `ev` is the first event stored in `ec`
+    ev.printShort(cout); // print short description of 1st event
+    (*it).printShort(cout); // same output as previous line
+    ++it;
+    (*it).printShort(cout); // print short description of 2nd event
+    std::cout << (it == it_end) << std::endl; // print "0"
+    std::cout << (it != it_end) << std::endl; // print "1"
+    ++it;
+    std::cout << (it == it_end) << std::endl; // print "1"
+    std::cout << (it != it_end) << std::endl; // print "0"
 
 }
