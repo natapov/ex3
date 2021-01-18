@@ -21,7 +21,6 @@ public:
     EventContainer() ;
     virtual ~EventContainer(){};
     virtual void add(BaseEvent& event) =0;
-    //virtual void add(BaseEvent& event);
     EventIterator begin();
     EventIterator end();
     

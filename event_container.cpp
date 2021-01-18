@@ -22,11 +22,7 @@ EventContainer::EventIterator EventContainer::end()
     return EventIterator(this->events.end());
 }
 
-
-
 EventContainer::EventIterator::EventIterator(mtm::PointerList::ListIterator listIter): listIter(listIter){}
-
-
 
 EventContainer::EventIterator EventContainer::EventIterator::operator++()
 {
