@@ -1,13 +1,11 @@
 #include "date_wrap.h"
-const int DAYS_IN_MONTH = 30;
-const int MONTHS_IN_YEAR = 12;
 using mtm::DateWrap;
 using std::ostream;
 using mtm::NegativeDays;
 using mtm::InvalidDate;
 DateWrap::DateWrap(int day, int month, int year){
-	if(day <= 0 || day > DAYS_IN_MONTH || month <= 0 || month > MONTHS_IN_YEAR)
-	{//ZEEV are all years valid
+	if(day <= 0 || day > this->DAYS_IN_MONTH || month <= 0 || month > this->MONTHS_IN_YEAR)
+	{
 		throw InvalidDate();
 	}
 	day_data  = day;

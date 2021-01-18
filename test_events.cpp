@@ -5,6 +5,7 @@
 #include "closed_event.h"
 #include "event_container.h"
 #include "festival.h"
+#include "recurring_event.h"
 using std::cout;
 using std::endl;
 // using std::string;
@@ -23,6 +24,7 @@ struct Function
 };
 int main()
 {
+    
     DateWrap date(1, 2, 3);
     OpenEvent event("first event", date);
     event.registerParticipant(1234);
@@ -114,7 +116,7 @@ int main()
     fest.add(eventf);
     fest.add(event2f);
     
-    date_festival++;//THIS SHOULD CAUSE EXCEPION !!
+    //date_festival++;//THIS SHOULD CAUSE EXCEPION !!
     CustomEvent<Function> event1f("This is a custom event in festival", date_festival, f1);
     event1f.registerParticipant(1234);
     event1f.registerParticipant(432);
@@ -138,5 +140,16 @@ int main()
     ++it;
     std::cout << (it == it_end) << std::endl; // print "1"
     std::cout << (it != it_end) << std::endl; // print "0"
-   
+
+    cout <<"TESTING RECURRING EVENT \n";
+    DateWrap start_date(3,1,1);
+    RecurringEvent rec(start_date, "This is a recurring event", 7, 3);
+    int i = 1;
+    for(EventContainer::EventIterator iter = rec.begin(); iter != rec.end(); ++iter)
+    {
+        (*iter).registerParticipant(i);
+        (*iter).printLong(cout);
+        i*=2;
+    }
+
 }

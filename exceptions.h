@@ -6,7 +6,7 @@
 namespace mtm
 {
     class Exception : std::exception{};
-
+//datewrap:
     class NegativeDays : Exception{};
 
     class InvalidDate : Exception{};
@@ -22,6 +22,12 @@ namespace mtm
     class RegistrationBlocked : Exception{};
 
     class DateMismatch : Exception{};
+//recurring event:
+    class InvalidNumber : Exception{};
+
+    class InvalidInterval : Exception{};
+
+    class NotSupported : Exception{};
 }
 
 #endif

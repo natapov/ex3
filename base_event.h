@@ -31,7 +31,13 @@ public:
     bool operator<(const BaseEvent& event) const; 
     bool operator==(const BaseEvent& event) const;
 
+
+
     mtm::DateWrap getDate(){return date;} //make event container friend class maybe?
+    void changeDate(int days_to_add)//TODO: move to ccp if final 
+    {
+        this->date+=days_to_add;
+    }
 };
 
 

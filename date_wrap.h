@@ -19,6 +19,8 @@ class mtm::DateWrap{
 	int dateWrapCompare(const DateWrap& date) const;
 	
 public:
+	static const int DAYS_IN_MONTH = 30;
+	static const int MONTHS_IN_YEAR = 12;
 	DateWrap(const DateWrap&) = default;
 	~DateWrap() = default;
 	DateWrap(int day, int month, int year);

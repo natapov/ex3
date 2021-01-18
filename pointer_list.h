@@ -1,33 +1,33 @@
-#ifndef LIST_H
-#define LIST_H
-//THIS IS A TEMPLATED LIST THAT STORES VALUES OF TYPE "T" BY VALUE
+#ifndef POINTER_LIST_H
+#define POINTER_LIST_H
 #include <assert.h>
 #include <stdlib.h>
 #include "list.h"
 #include "exceptions.h"
+#include "base_event.h"
 using mtm::ValueNotInList;
+
 namespace mtm
 {
-    template <typename T>
-    class List;
+    class PointerList;
 }
-using mtm::List;
+using mtm::PointerList;
 
-//Type Y should support these operations:
+//Type T should support these operations:
 // == operator
 // T(const T&) - copy constructor
 // < operator
-//typedef int T;
-template <typename T>
-class List
+
+typedef mtm::BaseEvent* T;
+class PointerList
 {
 private:
     struct Node
     {
         T value;
         Node* next;
-        Node(T value): value(value), next(NULL) {}
-        Node(T value, Node* next): value(value), next(next) {}
+        Node(const T& value): value(value), next(NULL) {}
+        Node(const T& value, Node* next): value(value), next(next) {}
     };
     
     int size;
@@ -39,7 +39,7 @@ public:
             Node* current;
         public:
             ListIterator(Node* node) :current(node){}
-            const T operator*() const{
+            const T& operator*() const{
                 return this->current->value;
             }
             ListIterator& operator++(){
@@ -55,19 +55,20 @@ public:
             }
     };
 public:
-    List(): size(0), head(NULL) {}
+    PointerList(): size(0), head(NULL) {}
 
-    ~List()
+    ~PointerList()
     {
         while(this->head)
         {
             Node *temp = this->head;
             this->head = this->head->next;
+            delete temp->value;
             delete temp;
         }
     }
 
-    List(const List& list): size(list.size)
+    PointerList(const PointerList& list): size(list.size)
     {
         if(list.size > 0)
         {
@@ -89,7 +90,7 @@ public:
         }
     }
 
-    List& operator=(const List& list)
+    PointerList& operator=(const PointerList& list)
     {
         if(this == &list)
         {
@@ -120,7 +121,7 @@ public:
         return *this;
     }
     
-    bool contains(T element)
+    bool contains(const T& element)
     {
         Node* current = head;
         while(current)
@@ -134,7 +135,7 @@ public:
         return false;
     }
 
-    void add(T element)
+    void add(const T& element)
     {
         Node *new_node = new Node(element);
         Node *current = this->head;
@@ -145,14 +146,14 @@ public:
             this->size++;
             return;
         }
-        if(new_node->value < current->value)
+        if(*(new_node->value) < *(current->value))
         {
             new_node->next = current;
             this->head = new_node;
             this->size++;
             return;
         }
-        while(current->next && current->next->value < new_node->value) //SMALLER value IN THE BEGGINING 
+        while(current->next && *(current->next->value) < *(new_node->value)) //SMALLER value IN THE BEGGINING 
         {
             current = current->next;
         }
@@ -160,35 +161,35 @@ public:
         current->next = new_node;
         this->size++;
     }
-    void remove(T element)//currently removes the first occurents of element
-    {
-        if(!this->head)
-        {
-            throw ValueNotInList();
-        }
-        if(this->head->value == element)
-        {
-            Node* temp = this->head;
-            this->head = temp->next;
-            delete temp;
-            this->size--;
-            return;
-        }
-        Node *current = this->head;
-        while(current->next)
-        {
-            if(current->next->value == element)
-            {
-                Node* temp = current->next;
-                current->next = current->next->next;
-                this->size--;
-                delete temp;
-                return;
-            }
-            current = current->next;
-        }
-        throw ValueNotInList();
-    }
+    // void remove(const T& element)//currently removes the first occurence of element
+    // {
+    //     if(!this->head)
+    //     {
+    //         throw ValueNotInList();
+    //     }
+    //     if(this->head->value == element)
+    //     {
+    //         Node* temp = this->head;
+    //         this->head = temp->next;
+    //         delete temp;
+    //         this->size--;
+    //         return;
+    //     }
+    //     Node *current = this->head;
+    //     while(current->next)
+    //     {
+    //         if(current->next->value == element)
+    //         {
+    //             Node* temp = current->next;
+    //             current->next = current->next->next;
+    //             this->size--;
+    //             delete temp;
+    //             return;
+    //         }
+    //         current = current->next;
+    //     }
+    //     throw ValueNotInList();
+    // }
     
     ListIterator end() const
     {
