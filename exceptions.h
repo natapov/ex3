@@ -9,6 +9,8 @@ namespace mtm
 
     class NegativeDays : Exception{};
 
+    class InvalidDate : Exception{};
+
     class ValueNotInList : Exception{};
 
     class AlreadyInvited : Exception{};
@@ -18,8 +20,8 @@ namespace mtm
     class InvalidStudent : Exception{};
 
     class RegistrationBlocked : Exception{};
-}
 
-//date wrap
+    class DateMismatch : Exception{};
+}
 
 #endif

@@ -6,7 +6,7 @@ MAIN_CPP = list_test.cpp #CHANGE ME TO CHANGE THE CURRENT TEST FILE
 MAIN_OBJ = test.o
 
 #THIS IS ALL THE OBJ FILES EXCEPT THE ONE CONTAINTING THE main() FUNCTION
-ALL_OBJS = date.o date_wrap.o  base_event.o closed_event.o open_event.o event_container.o custom_event.o list.o
+ALL_OBJS = date.o date_wrap.o  base_event.o closed_event.o open_event.o custom_event.o list.o event_container.o festival.o
 
 #VARIOUS FLAGS
 DEBUG_FLAG = -g
@@ -36,6 +36,9 @@ closed_event.o : closed_event.cpp closed_event.h base_event.cpp base_event.h  li
 	$(CC) -c $(DEBUG_FLAG) $(COMP_FLAG) $*.cpp
 
 event_container.o: event_container.h event_container.cpp list.h base_event.h base_event.cpp date_wrap.h date_wrap.cpp date.h date.c
+	$(CC) -c $(DEBUG_FLAG) $(COMP_FLAG) $*.cpp
+
+festival.o: festival.h festival.cpp event_container.h event_container.cpp list.h base_event.h base_event.cpp date_wrap.h date_wrap.cpp date.h date.c
 	$(CC) -c $(DEBUG_FLAG) $(COMP_FLAG) $*.cpp
 
 $(MAIN_OBJ) : $(MAIN_CPP)

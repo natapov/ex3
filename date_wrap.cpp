@@ -4,8 +4,16 @@ const int MONTHS_IN_YEAR = 12;
 using mtm::DateWrap;
 using std::ostream;
 using mtm::NegativeDays;
-
-DateWrap::DateWrap(int day, int month, int year): day_data(day), month_data(month), year_data(year){}
+using mtm::InvalidDate;
+DateWrap::DateWrap(int day, int month, int year){
+	if(day <= 0 || day > DAYS_IN_MONTH || month <= 0 || month > MONTHS_IN_YEAR)
+	{//ZEEV are all years valid
+		throw InvalidDate();
+	}
+	day_data  = day;
+	month_data= month;
+	year_data = year;
+}
 
 int DateWrap::day() const{
 		return day_data;

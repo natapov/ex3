@@ -27,10 +27,11 @@ public:
     void unregisterParticipant(int participant);
     std::ostream& printShort(std::ostream& out) const;
     std::ostream& printLong(std::ostream& out) const;
-    virtual BaseEvent* clone() const = 0; //ZEEV removed pure virtual to allow taking BaseEvent as parameter 
-
+    virtual BaseEvent* clone() const = 0; 
     bool operator<(const BaseEvent& event) const; 
     bool operator==(const BaseEvent& event) const;
+
+    mtm::DateWrap getDate(){return date;} //make event container friend class maybe?
 };
 
 
