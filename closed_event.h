@@ -13,7 +13,7 @@ class mtm::ClosedEvent : public mtm::BaseEvent
 {
     List<int> invitees;
 public:
-    ClosedEvent(std::string name, mtm::DateWrap date);
+    ClosedEvent(mtm::DateWrap date, std::string name);
     void registerParticipant(int participant) override;
     // void unregisterParticipant(int participant);
     void addInvitee(int student);

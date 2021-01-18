@@ -2,11 +2,11 @@
 
 using mtm::OpenEvent;
 
-OpenEvent::OpenEvent(std::string name, mtm::DateWrap date): BaseEvent(name,date){}
+OpenEvent::OpenEvent(mtm::DateWrap date, std::string name): BaseEvent(date,name){}
 
 OpenEvent* OpenEvent::clone() const
 {
-    OpenEvent* cloned_event = new OpenEvent(this->name, this->date);
+    OpenEvent* cloned_event = new OpenEvent(this->date, this->name);
     cloned_event->participants = this->participants;
     return cloned_event;
 }

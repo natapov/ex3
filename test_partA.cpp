@@ -22,12 +22,12 @@ int main() {
     print(date == DateWrap(8, 12, 2020));
     try {
         date += (-3);
-    } catch (mtm::NegativeDays) {
+    } catch (mtm::NegativeDays&) {//ZEEV USED TO BE CAUGHT BY VALUE CAUSING COMPILE ERROR. STAFF MISTAKE ?
         print("NegativeDays");
     }
     try {
         date = date + (-3);
-    } catch (mtm::NegativeDays) {
+    } catch (mtm::NegativeDays&) {
         print("NegativeDays");
     }
     return 0;

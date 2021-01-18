@@ -8,7 +8,7 @@ using mtm::DateWrap;
 using mtm::AlreadyRegistered;
 using mtm::InvalidStudent;
 
-BaseEvent::BaseEvent(string name, DateWrap date): name(name), date(date), participants(){}
+BaseEvent::BaseEvent(DateWrap date,string name): name(name), date(date), participants(){}
 void BaseEvent::registerParticipant(int participant)
 {
     if (participant > this->MAX_STUDENT || participant < this->MIN_STUDENT)
@@ -30,23 +30,23 @@ void BaseEvent::unregisterParticipant(int participant)
     }
     participants.remove(participant);
 }
-/**
+/** TODO: DELETE THIS
 BaseEvent* BaseEvent::clone() const
 {
-    BaseEvent* cloned_event = new BaseEvent(this->name, this->date);
+    BaseEvent* cloned_event = new BaseEvent(this->date, this->name);
     cloned_event->participants = this->participants;
     return cloned_event;
 }
 **/
 ostream& BaseEvent::printShort(ostream& out) const
 {
-    out << name << " " << date;
+    out << name << " " << date << endl;
     return out;
 }
 
 ostream& BaseEvent::printLong(ostream& out) const
 {
-    printShort(out) << endl;
+    printShort(out);
     List<int>::ListIterator current = participants.begin();
     List<int>::ListIterator end = participants.end();
     

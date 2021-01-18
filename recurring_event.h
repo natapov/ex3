@@ -4,37 +4,33 @@
 #include "event_container.h"
 #include "date_wrap.h"
 #include "exceptions.h"
-#include "open_event.h"//TEMPORARY
 
-namespace mtm{
-
-typedef OpenEvent EventType;
-class RecurringEvent : public EventContainer
+namespace mtm
 {
-public:
-    RecurringEvent(DateWrap date, std::string name, int num_occurrences, int interval_days): EventContainer()
+    template <typename EventType>
+    class RecurringEvent : public EventContainer
     {
-        if(num_occurrences <=0)
+    public:
+        RecurringEvent(DateWrap date, std::string name, int num_occurrences, int interval_days): EventContainer()
         {
-            throw InvalidNumber();
+            if(num_occurrences <=0)
+            {
+                throw InvalidNumber();
+            }
+            if(interval_days <= 0)
+            {
+                throw InvalidInterval();
+            }
+            EventType event(date, name); //NOTE: THIS MEANS WE DON'T SUPPORT CUSTOM EVENT
+            for(int i = 0; i < num_occurrences; i++)
+            {
+                EventContainer::add(event);
+                event.changeDate(interval_days);
+            }
         }
-        if(interval_days <= 0)
-        {
-            throw InvalidInterval();
+        void add(BaseEvent& event) override{
+            throw NotSupported();
         }
-
-        EventType event(name, date); //NOTE: THIS MEANS WE DON'T SUPPORT CUSTOM EVENT BECAUSE THE CONSTRUCTOR TAKES MORE VALUES zeev
-        for(int i = 0; i < num_occurrences; i++)
-        {
-            EventContainer::add(event);
-
-            event.changeDate(interval_days);
-        }
-    }
-    void add(BaseEvent& event) override
-    {
-        throw NotSupported();
-    }
-};
+    };
 }
 #endif

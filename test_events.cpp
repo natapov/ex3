@@ -143,11 +143,11 @@ int main()
 
     cout <<"TESTING RECURRING EVENT \n";
     DateWrap start_date(3,1,1);
-    RecurringEvent rec(start_date, "This is a recurring event", 7, 3);
+    RecurringEvent<ClosedEvent> rec(start_date, "This is a recurring event", 7, 3);
     int i = 1;
     for(EventContainer::EventIterator iter = rec.begin(); iter != rec.end(); ++iter)
     {
-        (*iter).registerParticipant(i);
+        (*iter).registerParticipant(i);//ZEEV we can't use .addInvitee() here! should we be able to?
         (*iter).printLong(cout);
         i*=2;
     }

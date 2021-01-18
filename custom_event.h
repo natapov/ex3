@@ -15,7 +15,7 @@ class mtm::CustomEvent: public mtm::BaseEvent
 private:
     CanRegister can_register;
 public:
-    CustomEvent(std::string name, mtm::DateWrap date, CanRegister can_register);
+    CustomEvent(mtm::DateWrap date,std::string name, CanRegister can_register);
     ~CustomEvent(){}
     void registerParticipant(int participant) override;
     /**
@@ -31,7 +31,7 @@ public:
 namespace mtm 
 {
     template <typename CanRegister>
-    CustomEvent<CanRegister>::CustomEvent(std::string name, mtm::DateWrap date, CanRegister function): BaseEvent(name, date), can_register(function) {}
+    CustomEvent<CanRegister>::CustomEvent(mtm::DateWrap date, std::string name, CanRegister function): BaseEvent(date, name), can_register(function) {}
 
     template <typename CanRegister>
     void CustomEvent<CanRegister>::registerParticipant(int participant) 
@@ -50,7 +50,7 @@ namespace mtm
     template <typename CanRegister>
     CustomEvent<CanRegister>* CustomEvent<CanRegister>::clone() const
     {
-        CustomEvent* cloned_event = new CustomEvent(this->name, this->date, this->can_register);
+        CustomEvent* cloned_event = new CustomEvent(this->date,this->name, this->can_register);
         cloned_event->participants = this->participants;
         return cloned_event;
     }

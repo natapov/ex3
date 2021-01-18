@@ -11,7 +11,7 @@ namespace mtm
 class mtm::OpenEvent: public mtm::BaseEvent
 {
 public:
-    OpenEvent(std::string name, mtm::DateWrap date);
+    OpenEvent(mtm::DateWrap date, std::string name);
     ~OpenEvent(){}//TO DO: does evrything still work if we remove this
     /** INHERETED 
     void registerParticipant(int participant); //causes compile error if included

@@ -2,22 +2,26 @@
 #define ONE_TIME_EVENT_H_
 
 #include "event_container.h"
-//#include "date_wrap.h"
-#include "exceptions.h"
-#include "open_event.h"//TEMPORARY
 #include "date_wrap.h"
+#include "exceptions.h"
 
 
 namespace mtm
 {
-    typedef OpenEvent EventType
-    class mtm::OneTimeEvent : public mtm::EventContainer
+    template <typename EventType>
+    class OneTimeEvent : public EventContainer
     {
     public:
-        OpenEvent(DateWrap date, )
-        void add(BaseEvent& event) override;
-
-    }
+        OneTimeEvent(DateWrap date, std::string name): EventContainer()
+        {
+            EventType event(date, name); //NOTE: THIS MEANS WE DON'T SUPPORT CUSTOM EVENT BECAUSE THE CONSTRUCTOR TAKES MORE VALUES zeev
+            EventContainer::add(event);
+        }
+        void add(BaseEvent& event) override{
+            throw NotSupported();
+        }
+    };
 }
+
 
 #endif
