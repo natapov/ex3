@@ -24,7 +24,7 @@ class List
 private:
     struct Node
     {
-        const T& value;
+        T value;
         Node* next;
         Node(const T& value): value(value), next(NULL) {}
         Node(const T& value, Node* next): value(value), next(next) {}
