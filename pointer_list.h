@@ -13,20 +13,20 @@ namespace mtm
 }
 using mtm::PointerList;
 
-//Type T should support these operations:
+//BaseEvent*ype BaseEvent* should support these operations:
 // == operator
-// T(const T&) - copy constructor
+// BaseEvent*(const BaseEvent*&) - copy constructor
 // < operator
-typedef mtm::BaseEvent* T;
+//typedef mtm::BaseEvent* BaseEvent*;
 class PointerList
 {
 private:
     struct Node
     {
-        T value;
+        BaseEvent* value;
         Node* next;
-        Node(const T& value): value(value), next(NULL) {}
-        Node(const T& value, Node* next): value(value), next(next) {}
+        Node(BaseEvent* value): value(value), next(NULL) {}
+        Node(BaseEvent* value, Node* next): value(value), next(next) {}
     };
     
     int size;
@@ -38,9 +38,12 @@ public:
             Node* current;
         public:
             ListIterator(Node* node) :current(node){}
-            const T& operator*() const{
-                return this->current->value;
+            mtm::BaseEvent& operator*() const{
+                return (*(current->value));
             }
+            // mtm::BaseEvent* operator*() {
+            //     return this->current->value;
+            // }
             ListIterator& operator++(){
                this->current = this->current->next;
                return *this;
@@ -120,12 +123,12 @@ public:
     //     return *this;
     // }
     
-    bool contains(const T& element)
+    bool contains(const BaseEvent* element)
     {
         Node* current = head;
         while(current)
         {
-            if(element == current->value)
+            if(*(element) == *(current->value))
             {
                 return true;
             }
@@ -134,7 +137,7 @@ public:
         return false;
     }
 
-    void add(const T& element)
+    void add(BaseEvent* element)
     {
         Node *new_node = new Node(element);
         Node *current = this->head;
@@ -152,7 +155,7 @@ public:
             this->size++;
             return;
         }
-        while(current->next && *(current->next->value) < *(new_node->value)) //SMALLER value IN THE BEGGINING 
+        while(current->next && *(current->next->value) < *(new_node->value)) //SMALLER value IN BaseEvent*HE BEGGINING 
         {
             current = current->next;
         }

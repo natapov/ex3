@@ -20,9 +20,9 @@ public:
     class EventIterator;
     EventContainer() ;
     virtual ~EventContainer(){};
-    virtual void add(BaseEvent& event) =0;
-    EventIterator begin();
-    EventIterator end();
+    virtual void add(const BaseEvent& event) =0;
+    EventIterator begin() const;
+    EventIterator end() const;
     
 public:
     class EventIterator

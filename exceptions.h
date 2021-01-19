@@ -28,6 +28,10 @@ namespace mtm
     class InvalidInterval : Exception{};
 
     class NotSupported : Exception{};
+//schedule:
+    class EventAlreadyExists: Exception{};
+
+    class EventDoesNotExist: Exception{};
 }
 
 #endif

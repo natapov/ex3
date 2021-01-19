@@ -28,7 +28,7 @@ namespace mtm
                 event.changeDate(interval_days);
             }
         }
-        void add(BaseEvent& event) override{
+        void add(const BaseEvent& event) override{
             throw NotSupported();
         }
     };

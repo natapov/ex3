@@ -17,7 +17,7 @@ namespace mtm
             EventType event(date, name); //NOTE: THIS MEANS WE DON'T SUPPORT CUSTOM EVENT BECAUSE THE CONSTRUCTOR TAKES MORE VALUES zeev
             EventContainer::add(event);
         }
-        void add(BaseEvent& event) override{
+        void add(const BaseEvent& event) override{
             throw NotSupported();
         }
     };

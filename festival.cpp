@@ -4,9 +4,9 @@ using mtm::Festival;
 using mtm::DateWrap;
 using mtm::DateMismatch;
 Festival::Festival(DateWrap date): EventContainer(), date(date){}
-void Festival::add(BaseEvent& event)
+void Festival::add(const BaseEvent& event)
 {
-    if(date != event.getDate())
+    if(this->date != event.getDate())
     {
         throw DateMismatch();
     }

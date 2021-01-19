@@ -60,9 +60,13 @@ ostream& BaseEvent::printLong(ostream& out) const
 
 bool BaseEvent::operator<(const BaseEvent& event) const
 {
-    return this->date < event.date;
+    if(this->date !=  event.date)
+    {
+        return this->date < event.date;
+    }
+    return(this->name < event.name);
 }
-bool BaseEvent::operator==(const BaseEvent& event) const //currently compares name, this whill only be uset in List::contains this can change depends on what we need
+bool BaseEvent::operator==(const BaseEvent& event) const 
 {
-    return this->name == event.name;
+    return (this->name == event.name) && (this->date == event.date);
 }

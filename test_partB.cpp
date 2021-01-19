@@ -20,15 +20,14 @@ void printEventsShort(mtm::EventContainer& events) {
     }
 }
 
+
 void test1() {
     mtm::Festival festival(mtm::DateWrap(21, 10, 2020));
 
+    // mtm::OpenEvent delte(mtm::DateWrap(21, 10, 2020), "Performance 1");
+    // festival.add(delte); //for new g++ versions
 
-    mtm::OpenEvent delte(mtm::DateWrap(21, 10, 2020), "Performance 1");
-    festival.add(delte);
-
-    //ORIGINAL LINE ZEEV
-    //festival.add(mtm::OpenEvent(mtm::DateWrap(21, 10, 2020), "Performance 1"));
+    festival.add(mtm::OpenEvent(mtm::DateWrap(21, 10, 2020), "Performance 1"));
     mtm::ClosedEvent closed(mtm::DateWrap(21, 10, 2020), "Performance 2");
     closed.addInvitee(1);
     closed.addInvitee(500);
