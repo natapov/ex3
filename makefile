@@ -10,8 +10,8 @@ ALL_OBJS = date.o date_wrap.o  base_event.o closed_event.o open_event.o custom_e
 
 #VARIOUS FLAGS
 DEBUG_FLAG = -g
-COMP_FLAG = -std=c++11 -Wall -Werror -pedantic-errors
-COMP_FLAG_C = -std=c99 -Wall -Werror -pedantic-errors 
+COMP_FLAG = -std=c++11 -Wall -Werror -pedantic-errors 
+COMP_FLAG_C = -std=c99 -Wall -Werror -pedantic-errors
 
 #OBJECT FILES: right hand side should be source files only
 date.o : date.c date.h
@@ -46,6 +46,7 @@ $(MAIN_OBJ) : $(MAIN_CPP)
 
 $(TEST_EVENTS_OBJ) : test_events.cpp event_container.cpp event_container.h
 	$(CC) -c $(DEBUG_FLAG) $(COMP_FLAG) test_events.cpp -o $@
+ 
 
 #EXECUTABLES
 #NOT ALL OBJECT FILES ARE NECARRY FOR EVERY TEST BUT THIS WORKS TOO

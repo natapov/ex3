@@ -1,6 +1,6 @@
 #include "base_event.h"
 
-using std::string; //I think these should be moved to cpp file zeev
+using std::string; 
 using std::ostream;
 using std::endl;
 using mtm::BaseEvent;

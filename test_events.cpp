@@ -1,5 +1,5 @@
-#include "date_wrap.h"
 #include <iostream>
+#include "date_wrap.h"
 #include "custom_event.h"
 #include "open_event.h"
 #include "closed_event.h"
@@ -27,7 +27,7 @@ int main()
     // TODO:  SWITCH DATE WITH NAME IN ALL EVENT CONSTRUCTOR CALLS 
     
     DateWrap date(1, 2, 3);
-    OpenEvent event("first event", date);
+    OpenEvent event(date, "first event");
     event.registerParticipant(1234);
     event.registerParticipant(4321);
     event.registerParticipant(1);
@@ -41,7 +41,7 @@ int main()
     
     cout <<"TESTING CLOSED EVENT \n";
     date++;
-    ClosedEvent event4("This is a closed event", date);
+    ClosedEvent event4(date,"This is a closed event");
     event4.registerParticipant(1234);
     event4.registerParticipant(432);
     event4.addInvitee(24);
@@ -56,7 +56,7 @@ int main()
     cout <<"TESTING CUSTOM EVENT \n";
     date++;
     Function f;
-    CustomEvent<Function> event1("This is a custom event", date, f);
+    CustomEvent<Function> event1(date, "This is a custom event", f);
     
     event1.registerParticipant(1234);
     event1.registerParticipant(432);
@@ -97,7 +97,7 @@ int main()
 
     cout <<"TESTING FESTIVAL \n";
     DateWrap date_festival(12, 12, 123);
-    OpenEvent eventf("Open event in festival", date_festival);
+    OpenEvent eventf(date_festival, "Open event in festival");
     eventf.registerParticipant(1234);
     eventf.registerParticipant(4321);
     eventf.registerParticipant(1);
@@ -105,7 +105,7 @@ int main()
     eventf.registerParticipant(3);
 
 
-    ClosedEvent event2f("This is a closed event in festival", date_festival);
+    ClosedEvent event2f(date_festival, "This is a closed event in festival");
     event2f.registerParticipant(1234);
     event2f.registerParticipant(432);
     event2f.addInvitee(24);
@@ -118,7 +118,7 @@ int main()
     fest.add(event2f);
     
     //date_festival++;//THIS SHOULD CAUSE EXCEPION !!
-    CustomEvent<Function> event1f("This is a custom event in festival", date_festival, f1);
+    CustomEvent<Function> event1f(date_festival,"This is a custom event in festival", f1);
     event1f.registerParticipant(1234);
     event1f.registerParticipant(432);
     event1f.registerParticipant(24);
