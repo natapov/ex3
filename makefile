@@ -4,9 +4,9 @@ TEST_EVENTS = test_events
 TEST_EVENTS_OBJ = test_events.o
 
 #main exec 
-MAIN_EXEC = test #NAME OF FINAL EXECUTABLE
+MAIN_EXEC = main #NAME OF FINAL EXECUTABLE
 MAIN_CPP = test_partB.cpp #CHANGE ME TO CHANGE THE CURRENT TEST FILE
-MAIN_OBJ = test.o
+MAIN_OBJ = main.o
 
 #THIS IS ALL THE OBJ FILES EXCEPT THE ONE CONTAINTING THE main() FUNCTION
 ALL_OBJS = date.o date_wrap.o  base_event.o closed_event.o open_event.o custom_event.o list.o event_container.o festival.o schedule.o pointer_list.o
@@ -40,14 +40,15 @@ closed_event.o : closed_event.cpp closed_event.h base_event.cpp base_event.h  li
 
 pointer_list.o: pointer_list.h pointer_list.cpp base_event.h base_event.cpp
 	$(CC) -c $(DEBUG_FLAG) $(COMP_FLAG) $*.cpp
+	
 event_container.o: event_container.h event_container.cpp list.h base_event.h base_event.cpp date_wrap.h date_wrap.cpp date.h date.c pointer_list.h pointer_list.cpp
 	$(CC) -c $(DEBUG_FLAG) $(COMP_FLAG) $*.cpp
 
 festival.o: festival.h festival.cpp event_container.h event_container.cpp list.h base_event.h base_event.cpp date_wrap.h date_wrap.cpp date.h date.c pointer_list.h pointer_list.cpp
 	$(CC) -c $(DEBUG_FLAG) $(COMP_FLAG) $*.cpp
-schedule.o: schedule.cpp schedule.h event_container.h event_container.cpp base_event.h base_event.cpp date_wrap.h date_wrap.cpp date.h date.c pointer_list.h pointer_list.cpp
 
-$(CC) -c $(DEBUG_FLAG) $(COMP_FLAG) $*.cpp
+schedule.o: schedule.cpp schedule.h event_container.h event_container.cpp base_event.h base_event.cpp date_wrap.h date_wrap.cpp date.h date.c pointer_list.h pointer_list.cpp
+	$(CC) -c $(DEBUG_FLAG) $(COMP_FLAG) $*.cpp
 
 $(MAIN_OBJ) : $(MAIN_CPP)
 	$(CC) -c $(DEBUG_FLAG) $(COMP_FLAG) $(MAIN_CPP) -o $@
