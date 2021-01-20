@@ -2,10 +2,11 @@ make clean
 
 RED='\033[0;31m'
 GREEN='\033[0;32m'
+BLUE='\033[0;33m'
+
 NC='\033[0m'    
 run_test () {
-	echo "TEST $1:"
-	echo "Compiling.."
+	echo -e "${BLUE}TEST $1 ${NC}:"
 	make test${1}
 	./test${1} > tmp.out
 	DIFF=$(diff ./outputs/part${1}.txt tmp.out) 
@@ -22,14 +23,21 @@ run_test () {
 		echo
 	fi
 }
-if [ -z "$1" ]
-then
-	echo "RUNNING ALL TESTS"
-	run_test L
-	run_test E 
-	run_test A
-	run_test B
-	run_test C
-else
-	run_test $1 
-fi
+
+run_adam () {
+	echo -e "${BLUE}TEST ADAM $1 ${NC}:"
+	echo "Compiling.."
+	make adam${1}
+	./adam${1}
+}
+#if [ -z "$1" ]
+
+run_test A
+run_test B
+run_test C
+run_test L
+run_test E
+run_adam A
+run_adam B
+run_adam C
+make clean
