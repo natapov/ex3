@@ -56,13 +56,6 @@ bool event_pointer_compare(BaseEvent* event1, BaseEvent* event2)
     return (*event1 < *event2) || (*event1 == *event2);
 }
 
-// bool event_pointer_is_equal(BaseEvent* event1, BaseEvent* event2)
-// {
-//     //TODO: check this gives the wnated result for equal events
-//     return *event1 == *event2;
-// }
-
-
 
 void Schedule::addEvent(BaseEvent& event)
 {

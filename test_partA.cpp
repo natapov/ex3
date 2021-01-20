@@ -1,6 +1,6 @@
-#include <iostream>
 #include "date_wrap.h"
 #include "exceptions.h"
+#include <iostream>
 using mtm::DateWrap;
 using std::cout;
 using std::endl;
@@ -22,12 +22,12 @@ int main() {
     print(date == DateWrap(8, 12, 2020));
     try {
         date += (-3);
-    } catch (mtm::NegativeDays&) {//ZEEV USED TO BE CAUGHT BY VALUE CAUSING COMPILE ERROR. STAFF MISTAKE ?
+    } catch (mtm::NegativeDays) {
         print("NegativeDays");
     }
     try {
         date = date + (-3);
-    } catch (mtm::NegativeDays&) {
+    } catch (mtm::NegativeDays) {
         print("NegativeDays");
     }
     return 0;

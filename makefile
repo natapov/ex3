@@ -6,7 +6,7 @@ MAIN_CPP = test_partC.cpp #CHANGE ME TO CHANGE THE CURRENT TEST FILE
 MAIN_OBJ = test.o
 
 #THIS IS ALL THE OBJ FILES EXCEPT THE ONE CONTAINTING THE main() FUNCTION
-ALL_OBJS = date.o date_wrap.o  base_event.o closed_event.o open_event.o custom_event.o list.o event_container.o festival.o schedule.o
+ALL_OBJS = date.o date_wrap.o  base_event.o closed_event.o open_event.o custom_event.o list.o event_container.o festival.o schedule.o pointer_list.o
 
 #VARIOUS FLAGS
 DEBUG_FLAG = -g
@@ -35,13 +35,15 @@ custom_event.o : custom_event.h custom_event.cpp base_event.cpp base_event.h lis
 closed_event.o : closed_event.cpp closed_event.h base_event.cpp base_event.h  list.h date_wrap.cpp date_wrap.h date.c date.h exceptions.h
 	$(CC) -c $(DEBUG_FLAG) $(COMP_FLAG) $*.cpp
 
-event_container.o: event_container.h event_container.cpp list.h base_event.h base_event.cpp date_wrap.h date_wrap.cpp date.h date.c
+pointer_list.o: pointer_list.h pointer_list.cpp base_event.h base_event.cpp
+	$(CC) -c $(DEBUG_FLAG) $(COMP_FLAG) $*.cpp
+event_container.o: event_container.h event_container.cpp list.h base_event.h base_event.cpp date_wrap.h date_wrap.cpp date.h date.c pointer_list.h pointer_list.cpp
 	$(CC) -c $(DEBUG_FLAG) $(COMP_FLAG) $*.cpp
 
-festival.o: festival.h festival.cpp event_container.h event_container.cpp list.h base_event.h base_event.cpp date_wrap.h date_wrap.cpp date.h date.c
+festival.o: festival.h festival.cpp event_container.h event_container.cpp list.h base_event.h base_event.cpp date_wrap.h date_wrap.cpp date.h date.c pointer_list.h pointer_list.cpp
 	$(CC) -c $(DEBUG_FLAG) $(COMP_FLAG) $*.cpp
 
-schedule.o: schedule.cpp schedule.h event_container.h event_container.cpp base_event.h base_event.cpp date_wrap.h date_wrap.cpp date.h date.c
+schedule.o: schedule.cpp schedule.h event_container.h event_container.cpp base_event.h base_event.cpp date_wrap.h date_wrap.cpp date.h date.c pointer_list.h pointer_list.cpp
 	$(CC) -c $(DEBUG_FLAG) $(COMP_FLAG) $*.cpp
 
 $(MAIN_OBJ) : $(MAIN_CPP)
