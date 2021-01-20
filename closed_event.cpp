@@ -7,6 +7,10 @@ ClosedEvent::ClosedEvent(mtm::DateWrap date, std::string name): BaseEvent(date, 
 
 void ClosedEvent::addInvitee(int student)
 {
+    if (student > this->MAX_STUDENT || student < this->MIN_STUDENT)
+    {
+        throw InvalidStudent();
+    }
     if(invitees.contains(student))
     {
         throw AlreadyInvited();
@@ -19,6 +23,10 @@ void ClosedEvent::registerParticipant(int participant)
     if(invitees.contains(participant))
     {
         BaseEvent::registerParticipant(participant);
+    }
+    else
+    {
+        throw RegistrationBlocked();
     }
 }
 ClosedEvent* ClosedEvent::clone() const

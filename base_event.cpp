@@ -28,6 +28,10 @@ void BaseEvent::unregisterParticipant(int participant)
     {
         throw InvalidStudent();
     }
+    if(!this->participants.contains(participant))
+    {
+        throw NotRegistered();
+    }
     participants.remove(participant);
 }
 /** TODO: DELETE THIS
