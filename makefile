@@ -9,7 +9,7 @@ MAIN_CPP = test_partB.cpp #CHANGE ME TO CHANGE THE CURRENT TEST FILE
 MAIN_OBJ = test.o
 
 #THIS IS ALL THE OBJ FILES EXCEPT THE ONE CONTAINTING THE main() FUNCTION
-ALL_OBJS = date.o date_wrap.o  base_event.o closed_event.o open_event.o custom_event.o list.o event_container.o festival.o
+ALL_OBJS = date.o date_wrap.o  base_event.o closed_event.o open_event.o custom_event.o list.o event_container.o festival.o schedule.o
 
 #VARIOUS FLAGS
 DEBUG_FLAG = -g
@@ -43,6 +43,9 @@ event_container.o: event_container.h event_container.cpp list.h base_event.h bas
 
 festival.o: festival.h festival.cpp event_container.h event_container.cpp list.h base_event.h base_event.cpp date_wrap.h date_wrap.cpp date.h date.c
 	$(CC) -c $(DEBUG_FLAG) $(COMP_FLAG) $*.cpp
+	
+schedule.o: schedule.cpp schedule.h event_container.h event_container.cpp base_event.h base_event.cpp date_wrap.h date_wrap.cpp date.h date.c
+	$(CC) -c $(DEBUG_FLAG) $(COMP_FLAG) $*.cpp
 
 $(MAIN_OBJ) : $(MAIN_CPP)
 	$(CC) -c $(DEBUG_FLAG) $(COMP_FLAG) $(MAIN_CPP) -o $@
@@ -54,26 +57,26 @@ $(TEST_EVENTS_OBJ) : test_events.cpp event_container.cpp event_container.h
 #EXECUTABLES
 #NOT ALL OBJECT FILES ARE NECARRY FOR EVERY TEST BUT THIS WORKS TOO
 $(MAIN_EXEC) : $(MAIN_OBJ) $(ALL_OBJS) #all objects should be here
-	$(CC) $(DEBUG_FLAG) $(MAIN_OBJ) $(ALL_OBJS) -o $@
+	$(CC) $(DEBUG_FLAG) $(COMP_FLAG) $(MAIN_OBJ) $(ALL_OBJS) -o $@
 
 $(TEST_EVENTS) : $(TEST_EVENTS_OBJ) $(ALL_OBJS) 
-	$(CC) $(DEBUG_FLAG) $(TEST_EVENTS_OBJ) $(ALL_OBJS) -o $@
+	$(CC) $(DEBUG_FLAG) $(COMP_FLAG) $(TEST_EVENTS_OBJ) $(ALL_OBJS) -o $@
 	
 #TESTS: NAMES HARDCODED FOR SCRIPT COMPATABILITY
 testA : test_partA.cpp $(ALL_OBJS) 
-	$(CC) $(DEBUG_FLAG) test_partA.cpp $(ALL_OBJS) -o $@
+	$(CC) $(DEBUG_FLAG) $(COMP_FLAG) test_partA.cpp $(ALL_OBJS) -o $@
 	
 testB : test_partB.cpp $(ALL_OBJS) 
-	$(CC) $(DEBUG_FLAG) test_partB.cpp $(ALL_OBJS) -o $@
+	$(CC) $(DEBUG_FLAG) $(COMP_FLAG) test_partB.cpp $(ALL_OBJS) -o $@
 	
 testC : test_partC.cpp $(ALL_OBJS) 
-	$(CC) $(DEBUG_FLAG) test_partC.cpp $(ALL_OBJS) -o $@
+	$(CC) $(DEBUG_FLAG) $(COMP_FLAG) test_partC.cpp $(ALL_OBJS) -o $@
 	
 testL : test_list.cpp $(ALL_OBJS) 
-	$(CC) $(DEBUG_FLAG) test_list.cpp $(ALL_OBJS) -o $@
+	$(CC) $(DEBUG_FLAG) $(COMP_FLAG) test_list.cpp $(ALL_OBJS) -o $@
 	
 testE : test_list.cpp $(ALL_OBJS) 
-	$(CC) $(DEBUG_FLAG) test_list.cpp $(ALL_OBJS) -o $@
+	$(CC) $(DEBUG_FLAG) $(COMP_FLAG) test_list.cpp $(ALL_OBJS) -o $@
 
 clean :
-	rm -f $(MAIN_OBJ) $(ALL_OBJS) $(MAIN_EXEC) $(TEST_EVENTS_OBJ) test_list test_list.o $(TEST_EVENTS) testC testB testA tmp.out
+	rm -f $(MAIN_OBJ) $(ALL_OBJS) $(MAIN_EXEC) $(TEST_EVENTS_OBJ) test_list test_list.o $(TEST_EVENTS) testC testB testA testL testE tmp.out

@@ -6,18 +6,18 @@ using mtm::BaseEvent;
 
 EventContainer::EventContainer(): events(){}
 
-void EventContainer::add(BaseEvent& event)
+void EventContainer::add(const BaseEvent& event)
 {
     this->events.add(event.clone());
 }
 
-EventContainer::EventIterator EventContainer::begin()
+EventContainer::EventIterator EventContainer::begin() const
 {
     return EventIterator(this->events.begin());
 }
 
 
-EventContainer::EventIterator EventContainer::end()
+EventContainer::EventIterator EventContainer::end() const
 {
     return EventIterator(this->events.end());
 }
@@ -29,10 +29,10 @@ EventContainer::EventIterator EventContainer::EventIterator::operator++()
     return ++(this->listIter);
 }
 const BaseEvent& EventContainer::EventIterator::operator*() const{
-    return *(*(this->listIter));
+    return *(this->listIter);
 }
-BaseEvent& EventContainer::EventIterator::operator*() {
-    return *(*(this->listIter));
+BaseEvent& EventContainer::EventIterator::operator*(){
+    return *(this->listIter);
 }
 bool EventContainer::EventIterator::operator==(const EventContainer::EventIterator& iterator)
 {

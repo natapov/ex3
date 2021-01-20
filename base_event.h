@@ -33,7 +33,8 @@ public:
 
 
 
-    mtm::DateWrap getDate(){return date;} //make event container friend class maybe?
+    mtm::DateWrap getDate() const {return this->date;}  //make event container friend class maybe?
+    std::string getName() const {return this->name;}
     void changeDate(int days_to_add)//TODO: move to ccp if final 
     {
         this->date+=days_to_add;
