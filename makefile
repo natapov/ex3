@@ -1,7 +1,10 @@
 CC = g++
-EXEC = test #NAME OF FINAL EXECUTABLE
+
 TEST_EVENTS = test_events
 TEST_EVENTS_OBJ = test_events.o
+
+#main exec 
+MAIN_EXEC = test #NAME OF FINAL EXECUTABLE
 MAIN_CPP = test_partB.cpp #CHANGE ME TO CHANGE THE CURRENT TEST FILE
 MAIN_OBJ = test.o
 
@@ -50,10 +53,27 @@ $(TEST_EVENTS_OBJ) : test_events.cpp event_container.cpp event_container.h
 
 #EXECUTABLES
 #NOT ALL OBJECT FILES ARE NECARRY FOR EVERY TEST BUT THIS WORKS TOO
-$(EXEC) : $(MAIN_OBJ) $(ALL_OBJS) #all objects should be here
+$(MAIN_EXEC) : $(MAIN_OBJ) $(ALL_OBJS) #all objects should be here
 	$(CC) $(DEBUG_FLAG) $(MAIN_OBJ) $(ALL_OBJS) -o $@
 
 $(TEST_EVENTS) : $(TEST_EVENTS_OBJ) $(ALL_OBJS) 
 	$(CC) $(DEBUG_FLAG) $(TEST_EVENTS_OBJ) $(ALL_OBJS) -o $@
+	
+#TESTS: NAMES HARDCODED FOR SCRIPT COMPATABILITY
+testA : test_partA.cpp $(ALL_OBJS) 
+	$(CC) $(DEBUG_FLAG) test_partA.cpp $(ALL_OBJS) -o $@
+	
+testB : test_partB.cpp $(ALL_OBJS) 
+	$(CC) $(DEBUG_FLAG) test_partB.cpp $(ALL_OBJS) -o $@
+	
+testC : test_partC.cpp $(ALL_OBJS) 
+	$(CC) $(DEBUG_FLAG) test_partC.cpp $(ALL_OBJS) -o $@
+	
+testL : test_list.cpp $(ALL_OBJS) 
+	$(CC) $(DEBUG_FLAG) test_list.cpp $(ALL_OBJS) -o $@
+	
+testE : test_list.cpp $(ALL_OBJS) 
+	$(CC) $(DEBUG_FLAG) test_list.cpp $(ALL_OBJS) -o $@
+
 clean :
-	rm -f $(MAIN_OBJ) $(ALL_OBJS) $(EXEC) $(TEST_EVENTS_OBJ) test_list test_list.o $(TEST_EVENTS) 
+	rm -f $(MAIN_OBJ) $(ALL_OBJS) $(MAIN_EXEC) $(TEST_EVENTS_OBJ) test_list test_list.o $(TEST_EVENTS) testC testB testA tmp.out
