@@ -36,6 +36,10 @@ namespace mtm
     template <typename CanRegister>
     void CustomEvent<CanRegister>::registerParticipant(int participant) 
     {
+        if (participant > this->MAX_STUDENT || participant < this->MIN_STUDENT)
+        {
+            throw InvalidStudent();
+        }
         if(this->can_register(participant))
         {
             BaseEvent::registerParticipant(participant);
