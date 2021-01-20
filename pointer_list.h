@@ -80,7 +80,7 @@ public:
             Node* current_original_node = list.head;
             while(current_original_node->next)
             {
-                current_copy_node->next = new Node(current_original_node->next->value);
+                current_copy_node->next = new Node(current_original_node->next->value->clone());
 
                 current_copy_node = current_copy_node->next;
                 current_original_node = current_original_node->next;
@@ -92,36 +92,36 @@ public:
         }
     }
 
-    // PointerList& operator=(const PointerList& list)
-    // {
-    //     if(this == &list)
-    //     {
-    //         return *this;
-    //     }
-    //     Node *new_head = NULL;
-    //     if(list.size != 0)
-    //     {
-    //         assert(list.head);
-    //         new_head = new Node(list.head->value);
-    //         Node* current_list_node = list.head;
-    //         Node* current_new_head_node = new_head;
-    //         while(current_list_node->next)
-    //         {
-    //             current_new_head_node->next = new Node(current_list_node->next->value);
-    //             current_new_head_node = current_new_head_node->next;
-    //             current_list_node = current_list_node->next;
-    //         }
-    //     }
-    //     while(this->head)
-    //     {
-    //         Node* temp = this->head;
-    //         this->head = this->head->next;
-    //         delete temp;
-    //     }
-    //     this->head = new_head;
-    //     this->size = list.size;
-    //     return *this;
-    // }
+    PointerList& operator=(const PointerList& list)
+    {
+        if(this == &list)
+        {
+            return *this;
+        }
+        Node *new_head = NULL;
+        if(list.size != 0)
+        {
+            assert(list.head);
+            new_head = new Node(list.head->value);
+            Node* current_list_node = list.head;
+            Node* current_new_head_node = new_head;
+            while(current_list_node->next)
+            {
+                current_new_head_node->next = new Node(current_list_node->next->value->clone());
+                current_new_head_node = current_new_head_node->next;
+                current_list_node = current_list_node->next;
+            }
+        }
+        while(this->head)
+        {
+            Node* temp = this->head;
+            this->head = this->head->next;
+            delete temp;
+        }
+        this->head = new_head;
+        this->size = list.size;
+        return *this;
+    }
     
     bool contains(const BaseEvent* element)
     {

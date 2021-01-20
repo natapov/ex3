@@ -6,18 +6,48 @@
 using namespace mtm;
 using std::cout;
 using std::endl;
+using std::list;
 
 bool event_pointer_compare(BaseEvent* event1, BaseEvent* event2);
-bool event_pointer_is_equal(BaseEvent* event1, BaseEvent* event2);
 
 Schedule::Schedule(): event_list(){}
+Schedule::Schedule(const Schedule& schedule): event_list()
+{
+    for(BaseEvent* event: schedule.event_list)
+    {
+        this->event_list.push_back(event->clone());
+    }
+    this->event_list.sort(event_pointer_compare);
+}
 Schedule::~Schedule()
+{
+    this->freeEventPointers();
+}
+
+
+void Schedule::freeEventPointers()
 {
     for (BaseEvent* event: this->event_list)
     {
         delete event;
     }
-    
+}
+
+Schedule& Schedule::operator=(const Schedule& schedule)
+{
+    if(this == &schedule)
+    {
+        return *this;
+    }
+    list<BaseEvent*> event_list = list<BaseEvent*>();
+    for(BaseEvent* event: schedule.event_list)
+    {
+        event_list.push_back(event->clone());
+    }
+    event_list.sort(event_pointer_compare);
+    this->freeEventPointers();
+    this->event_list = event_list;
+    return *this;
 }
 
 //#TODO: check this worsk correctly
