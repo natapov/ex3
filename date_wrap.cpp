@@ -64,21 +64,22 @@ bool DateWrap::operator>(const DateWrap& date)const{
 }
 DateWrap DateWrap::operator++(int)
 {
+	DateWrap tmp(*this);
 	if(day_data < DAYS_IN_MONTH)
-	{
+	{		
 		day_data++;
-		return *this;
+		return tmp;
 	}
 	if(month_data < MONTHS_IN_YEAR)
 	{
 		month_data++;
 		day_data = 1;
-		return *this;
+		return tmp;
 	}
 	year_data++;
 	month_data = 1;
 	day_data = 1;
-	return *this;
+	return tmp;
 }
 
 DateWrap DateWrap::operator+=(int days)
