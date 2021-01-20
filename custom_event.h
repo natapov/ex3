@@ -38,7 +38,7 @@ namespace mtm
     {
         if (participant > this->MAX_STUDENT || participant < this->MIN_STUDENT)
         {
-        throw InvalidStudent();
+            throw InvalidStudent();
         }
         if(this->can_register(participant))
         {

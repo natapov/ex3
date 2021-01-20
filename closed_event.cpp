@@ -20,6 +20,10 @@ void ClosedEvent::addInvitee(int student)
 
 void ClosedEvent::registerParticipant(int participant) 
 {
+    if (participant > this->MAX_STUDENT || participant < this->MIN_STUDENT)
+    {
+        throw InvalidStudent();
+    }
     if(invitees.contains(participant))
     {
         BaseEvent::registerParticipant(participant);
