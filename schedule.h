@@ -19,21 +19,13 @@ private:
     std::list<BaseEvent*> event_list;
     void addEvent(BaseEvent& event);
     BaseEvent* findEventByDateAndName(mtm::DateWrap date, std::string name) const;
-
-// public:
-//     class MutatingPredicate {
-//         int counter = 0;
-
-//     public:
-//         bool operator()(const mtm::BaseEvent& event) {
-//             ++counter;
-//             return true;
-//         }
-//     };
+    void freeEventPointers();
 
 public:
     Schedule();
+    Schedule(const Schedule& schedule);
     ~Schedule();
+    Schedule& operator=(const Schedule& schedule);
     void addEvents(const EventContainer& event_container);
     void registerToEvent(DateWrap date, std::string name, int student);
     void unregisterFromEvent(DateWrap date, std::string name, int student);

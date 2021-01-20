@@ -1,8 +1,10 @@
+#include <exception>
 #include "date_wrap.h"
 using mtm::DateWrap;
 using std::ostream;
 using mtm::NegativeDays;
 using mtm::InvalidDate;
+using std::bad_alloc;
 DateWrap::DateWrap(int day, int month, int year){
 	if(day <= 0 || day > this->DAYS_IN_MONTH || month <= 0 || month > this->MONTHS_IN_YEAR)
 	{
@@ -27,7 +29,16 @@ Date DateWrap::turnIntoDate() const{
 }
 int DateWrap::dateWrapCompare(const DateWrap& date) const{
 	Date this_date = this->turnIntoDate();
+	if(this_date == NULL)
+	{
+		throw bad_alloc();
+	}
 	Date other_date = date.turnIntoDate();
+	if(other_date == NULL)
+	{
+		dateDestroy(this_date);
+		throw bad_alloc();
+	}
 	int compare_result = dateCompare(this_date, other_date);
 	dateDestroy(this_date);
 	dateDestroy(other_date);
