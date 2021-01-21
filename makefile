@@ -5,7 +5,7 @@ TEST_EVENTS_OBJ = test_events.o
 
 #main exec 
 MAIN_EXEC = test #NAME OF FINAL EXECUTABLE
-MAIN_CPP = adam_test_part_c.cpp #CHANGE ME TO CHANGE THE CURRENT TEST FILE
+MAIN_CPP = temp.cpp #CHANGE ME TO CHANGE THE CURRENT TEST FILE
 MAIN_OBJ = test.o
 
 #THIS IS ALL THE OBJ FILES EXCEPT THE ONE CONTAINTING THE main() FUNCTION
@@ -46,10 +46,6 @@ event_container.o: event_container.h event_container.cpp list.h base_event.h bas
 
 festival.o: festival.h festival.cpp event_container.h event_container.cpp list.h base_event.h base_event.cpp date_wrap.h date_wrap.cpp date.h date.c pointer_list.h pointer_list.cpp
 	$(CC) -c $(DEBUG_FLAG) $(COMP_FLAG) $*.cpp
-<<<<<<< HEAD
-=======
-
->>>>>>> 1339816a1963abd6f80acd54287ef47910e1974b
 schedule.o: schedule.cpp schedule.h event_container.h event_container.cpp base_event.h base_event.cpp date_wrap.h date_wrap.cpp date.h date.c pointer_list.h pointer_list.cpp
 	$(CC) -c $(DEBUG_FLAG) $(COMP_FLAG) $*.cpp
 
@@ -84,5 +80,13 @@ testL : test_list.cpp $(ALL_OBJS)
 testE : test_list.cpp $(ALL_OBJS) 
 	$(CC) $(DEBUG_FLAG) $(COMP_FLAG) test_list.cpp $(ALL_OBJS) -o $@
 
+adamA : adam_test_part_a.cpp $(ALL_OBJS) 
+	$(CC) $(DEBUG_FLAG) $(COMP_FLAG) adam_test_part_a.cpp $(ALL_OBJS) -o $@
+
+adamB : adam_test_part_b.cpp $(ALL_OBJS) 
+	$(CC) $(DEBUG_FLAG) $(COMP_FLAG) adam_test_part_b.cpp $(ALL_OBJS) -o $@
+
+adamC : adam_test_part_c.cpp $(ALL_OBJS) 
+	$(CC) $(DEBUG_FLAG) $(COMP_FLAG) adam_test_part_c.cpp $(ALL_OBJS) -o $@
 clean :
-	rm -f $(MAIN_OBJ) $(ALL_OBJS) $(MAIN_EXEC) $(TEST_EVENTS_OBJ) test_list test_list.o $(TEST_EVENTS) testC testB testA testL testE tmp.out
+	rm -f $(MAIN_OBJ) $(ALL_OBJS) $(MAIN_EXEC) $(TEST_EVENTS_OBJ) test_list test_list.o $(TEST_EVENTS) testC testB testA testL testE tmp.out adamA adamB adamC a

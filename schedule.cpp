@@ -53,11 +53,11 @@ Schedule& Schedule::operator=(const Schedule& schedule)
 //#TODO: check this worsk correctly
 bool event_pointer_compare(BaseEvent* event1, BaseEvent* event2)
 {
-    return (*event1 < *event2) || (*event1 == *event2);
+    return (*event1 < *event2) || (*event1 == *event2); //TODO: PASSES TESTS EVEN WITHOUT SECOND CONDITION, WHICH IS CORRECT?
 }
 
 
-void Schedule::addEvent(BaseEvent& event)
+void Schedule::addEvent(const BaseEvent& event)
 {
     BaseEvent* event_pointer = event.clone();
     this->event_list.push_back(event_pointer);
@@ -145,8 +145,3 @@ void Schedule::printEventDetails(DateWrap date, std::string event_name) const
     }
     event->printLong(cout) << endl;
 }
-
-
-
-
-

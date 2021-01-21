@@ -30,15 +30,9 @@ public:
     virtual BaseEvent* clone() const = 0; 
     bool operator<(const BaseEvent& event) const; 
     bool operator==(const BaseEvent& event) const;
-
-
-
-    mtm::DateWrap getDate() const {return this->date;}  //make event container friend class maybe?
-    std::string getName() const {return this->name;}
-    void changeDate(int days_to_add)//TODO: move to ccp if final 
-    {
-        this->date+=days_to_add;
-    }
+    mtm::DateWrap getDate() const;
+    std::string getName() const;
+    void changeDate(int days_to_add);
 };
 
 

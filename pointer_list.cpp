@@ -68,7 +68,7 @@ PointerList& PointerList::operator=(const PointerList& list)
     return *this;
 }
 
-bool PointerList::contains(const BaseEvent* element)
+bool PointerList::contains(BaseEvent* element) const
 {
     Node* current = head;
     while(current)

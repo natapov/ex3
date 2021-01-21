@@ -13,11 +13,10 @@ namespace mtm
 }
 using mtm::PointerList;
 
-//BaseEvent*ype BaseEvent* should support these operations:
+//BaseEventype BaseEvent* should support these operations:
 // == operator
 // BaseEvent*(const BaseEvent*&) - copy constructor
 // < operator
-//typedef mtm::BaseEvent* BaseEvent*;
 class PointerList
 {
 private:
@@ -37,6 +36,7 @@ public:
         private:
             Node* current;
         public:
+        //#TODO: MOVE TO CPP
             ListIterator(Node* node) :current(node){}
             mtm::BaseEvent& operator*() const{
                 return (*(current->value));
@@ -45,11 +45,10 @@ public:
                this->current = this->current->next;
                return *this;
             }
-            bool operator==(const ListIterator& other){
+            bool operator==(const ListIterator& other) const {
                 return this->current == other.current;
             }
-            bool operator!=(const ListIterator& other)
-            {
+            bool operator!=(const ListIterator& other) const {
                 return !(*this==other);
             }
     };
@@ -58,7 +57,7 @@ public:
     ~PointerList();
     PointerList(const PointerList& list);
     PointerList& operator=(const PointerList& list);
-    bool contains(const BaseEvent* element);
+    bool contains(BaseEvent* element) const;
     void add(BaseEvent* element);
     ListIterator end() const;
     ListIterator begin() const;

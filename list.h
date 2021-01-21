@@ -39,18 +39,17 @@ public:
             Node* current;
         public:
             ListIterator(Node* node) :current(node){}
-            const T operator*() const{
+            T operator*() const{    //zeev previously was "const T" but i removed it because T is returned by value
                 return this->current->value;
             }
             ListIterator& operator++(){
                this->current = this->current->next;
                return *this;
             }
-            bool operator==(const ListIterator& other){
+            bool operator==(const ListIterator& other) const{
                 return this->current == other.current;
             }
-            bool operator!=(const ListIterator& other)
-            {
+            bool operator!=(const ListIterator& other) const{
                 return !(*this==other);
             }
     };
@@ -120,7 +119,7 @@ public:
         return *this;
     }
     
-    bool contains(T element)
+    bool contains(T element) const
     {
         Node* current = head;
         while(current)

@@ -10,9 +10,9 @@ namespace mtm
     class NegativeDays : Exception{};
 
     class InvalidDate : Exception{};
-//list
+//list:
     class ValueNotInList : Exception{};
-//base event
+//base event:
     class AlreadyInvited : Exception{};
 
     class AlreadyRegistered : Exception{};

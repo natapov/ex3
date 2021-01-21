@@ -34,14 +34,7 @@ void BaseEvent::unregisterParticipant(int participant)
     }
     participants.remove(participant);
 }
-/** TODO: DELETE THIS
-BaseEvent* BaseEvent::clone() const
-{
-    BaseEvent* cloned_event = new BaseEvent(this->date, this->name);
-    cloned_event->participants = this->participants;
-    return cloned_event;
-}
-**/
+
 ostream& BaseEvent::printShort(ostream& out) const
 {
     out << name << " " << date << endl;
@@ -73,4 +66,17 @@ bool BaseEvent::operator<(const BaseEvent& event) const
 bool BaseEvent::operator==(const BaseEvent& event) const 
 {
     return (this->name == event.name) && (this->date == event.date);
+}
+
+mtm::DateWrap BaseEvent::getDate() const 
+{
+    return this->date;
+}  
+std::string BaseEvent::getName() const
+{
+    return this->name;
+}
+void BaseEvent::changeDate(int days_to_add)
+{
+    this->date+=days_to_add;
 }

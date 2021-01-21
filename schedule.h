@@ -12,12 +12,11 @@
 namespace mtm
 {
 
-
 class Schedule
 {
 private:
     std::list<BaseEvent*> event_list;
-    void addEvent(BaseEvent& event);
+    void addEvent(const BaseEvent& event); //added const zeev 
     BaseEvent* findEventByDateAndName(mtm::DateWrap date, std::string name) const;
     void freeEventPointers();
 
