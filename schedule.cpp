@@ -57,7 +57,7 @@ bool event_pointer_compare(BaseEvent* event1, BaseEvent* event2)
 }
 
 
-void Schedule::addEvent(BaseEvent& event)
+void Schedule::addEvent(const BaseEvent& event)
 {
     BaseEvent* event_pointer = event.clone();
     this->event_list.push_back(event_pointer);

@@ -57,7 +57,7 @@ public:
     ~PointerList();
     PointerList(const PointerList& list);
     PointerList& operator=(const PointerList& list);
-    bool contains(const BaseEvent* element);
+    bool contains(BaseEvent* element) const;
     void add(BaseEvent* element);
     ListIterator end() const;
     ListIterator begin() const;
