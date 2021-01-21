@@ -19,12 +19,12 @@ Date dateCreate(int day, int month, int year)
 {
 	if(!isDateValid(day, month, year))
 	{
-		return nullptr;
+		return NULL;
 	}
 	Date date = (Date) malloc(sizeof(*date));
 	if(!date)
 	{
-		return nullptr;
+		return NULL;
 	}
 	date->day = day;
 	date->month = month;
@@ -60,7 +60,7 @@ Date dateCopy(Date date)
 {
     if(!date)
     {
-        return nullptr;
+        return NULL;
     }
     return dateCreate(date->day, date->month, date->year);
 }

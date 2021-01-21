@@ -42,4 +42,4 @@ run_test E
 run_adam A
 run_adam B
 run_adam C
-#make clean
+make clean
