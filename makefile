@@ -89,4 +89,4 @@ adamB : adam_test_part_b.cpp $(ALL_OBJS)
 adamC : adam_test_part_c.cpp $(ALL_OBJS) 
 	$(CC) $(DEBUG_FLAG) $(COMP_FLAG) adam_test_part_c.cpp $(ALL_OBJS) -o $@
 clean :
-	rm -f $(MAIN_OBJ) $(ALL_OBJS) $(MAIN_EXEC) $(TEST_EVENTS_OBJ) test_list test_list.o $(TEST_EVENTS) testC testB testA testL testE tmp.out adamA adamB adamC
+	rm -f $(MAIN_OBJ) $(ALL_OBJS) $(MAIN_EXEC) $(TEST_EVENTS_OBJ) test_list test_list.o $(TEST_EVENTS) testC testB testA testL testE tmp.out adamA adamB adamC a
