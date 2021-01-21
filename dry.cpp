@@ -36,11 +36,22 @@ std::vector<T> slice(std::vector<T> vec, int start, int step, int stop)
     return new_vec;
 }
 class A {
+    class smart_pointer
+    {
+        int* pointer;
+        int number_of_owners;
+    };
     public:
-    std::vector<int*> values;
-    void add(int x) { 
-        values.push_back(new int(x)); 
+    std::vector<smart_pointer> values;
+    void add(int x) {
+        values.push_back(new smart_pointer(x)); 
     }
+    // ~A(){
+    //     for (int* pointer: values)
+    //     {
+    //         delete pointer;
+    //     }    
+    // }
 };
 int main()
 {
