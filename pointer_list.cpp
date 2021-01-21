@@ -2,7 +2,7 @@
 
 using namespace mtm;
 
-PointerList::PointerList(): size(0), head(NULL) {}
+PointerList::PointerList(): size(0), head(nullptr) {}
 
 
 PointerList::~PointerList()
@@ -34,7 +34,7 @@ PointerList::PointerList(const PointerList& list): size(list.size)
     }
     else
     {
-        this->head = NULL;
+        this->head = nullptr;
     }
 }
 PointerList& PointerList::operator=(const PointerList& list)
@@ -43,7 +43,7 @@ PointerList& PointerList::operator=(const PointerList& list)
     {
         return *this;
     }
-    Node *new_head = NULL;
+    Node *new_head = nullptr;
     if(list.size != 0)
     {
         assert(list.head);
@@ -111,7 +111,7 @@ void PointerList::add(BaseEvent* element)
 
 PointerList::ListIterator PointerList::end() const
 {
-    return ListIterator(NULL);
+    return ListIterator(nullptr);
 }
 
 PointerList::ListIterator PointerList::begin() const

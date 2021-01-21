@@ -94,7 +94,7 @@ BaseEvent* Schedule::findEventByDateAndName(mtm::DateWrap date, std::string name
             return event_p;
         }
     }
-    return NULL;
+    return nullptr;
 }
 
 void Schedule::registerToEvent(DateWrap date, std::string name, int student)

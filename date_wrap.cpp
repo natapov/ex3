@@ -29,12 +29,12 @@ Date DateWrap::turnIntoDate() const{
 }
 int DateWrap::dateWrapCompare(const DateWrap& date) const{
 	Date this_date = this->turnIntoDate();
-	if(this_date == NULL)
+	if(this_date == nullptr)
 	{
 		throw bad_alloc();
 	}
 	Date other_date = date.turnIntoDate();
-	if(other_date == NULL)
+	if(other_date == nullptr)
 	{
 		dateDestroy(this_date);
 		throw bad_alloc();

@@ -24,7 +24,7 @@ private:
     {
         BaseEvent* value;
         Node* next;
-        Node(BaseEvent* value): value(value), next(NULL) {}
+        Node(BaseEvent* value): value(value), next(nullptr) {}
         Node(BaseEvent* value, Node* next): value(value), next(next) {}
     };
     
