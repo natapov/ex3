@@ -83,7 +83,7 @@ bool PointerList::contains(const BaseEvent* element)
 }
 
 void PointerList::add(BaseEvent* element)
-{
+{ 
     Node *new_node = new Node(element);
     Node *current = this->head;
     if(!current)
