@@ -18,11 +18,6 @@ public:
     CustomEvent(mtm::DateWrap date,std::string name, CanRegister can_register);
     ~CustomEvent(){}
     void registerParticipant(int participant) override;
-    /**
-    void unregisterParticipant(int participant);
-    std::ostream& printShort(std::ostream& out);
-    std::ostream& printLong(std::ostream& out);
-    **/
     CustomEvent* clone() const override;
 
 

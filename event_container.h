@@ -23,8 +23,6 @@ public:
     virtual void add(const BaseEvent& event) =0;
     EventIterator begin() const;
     EventIterator end() const;
-    
-public:
     class EventIterator
     {
         PointerList::ListIterator listIter;
@@ -34,10 +32,9 @@ public:
         EventIterator operator++();
         const BaseEvent& operator*() const;
         BaseEvent& operator*();
-        bool operator==(const EventIterator& iterator);
-        bool operator!=(const EventIterator& iterator);
+        bool operator==(const EventIterator& iterator) const;
+        bool operator!=(const EventIterator& iterator) const;
     };
 };
-
 
 #endif

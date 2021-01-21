@@ -34,12 +34,12 @@ const BaseEvent& EventContainer::EventIterator::operator*() const{
 BaseEvent& EventContainer::EventIterator::operator*(){
     return *(this->listIter);
 }
-bool EventContainer::EventIterator::operator==(const EventContainer::EventIterator& iterator)
+bool EventContainer::EventIterator::operator==(const EventContainer::EventIterator& iterator) const
 {
     return this->listIter == iterator.listIter;
 }
 
-bool EventContainer::EventIterator::operator!=(const EventContainer::EventIterator& iterator)
+bool EventContainer::EventIterator::operator!=(const EventContainer::EventIterator& iterator) const
 {
     return this->listIter != iterator.listIter;
 }
