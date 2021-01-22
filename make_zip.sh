@@ -10,7 +10,7 @@ cp *list* partB/
 rm partB/test_list.cpp
 cp festival* partB/
 cp schedule* partC/
-zip -FS Submission.zip partA/* partB/* partC/*
+zip -FS Submission.zip partA/* partB/* partC/* dry.cpp
 ./finalcheck Submission.zip
 
 rm -rf partA/

@@ -17,7 +17,7 @@ class Schedule
 private:
     std::list<BaseEvent*> event_list;
     void addEvent(const BaseEvent& event); //added const zeev 
-    BaseEvent* findEventByDateAndName(mtm::DateWrap date, std::string name) const;
+    BaseEvent* findEventByDateAndName(const mtm::DateWrap& date, const std::string& name) const;
     void freeEventPointers();
 
 public:
@@ -26,15 +26,15 @@ public:
     ~Schedule();
     Schedule& operator=(const Schedule& schedule);
     void addEvents(const EventContainer& event_container);
-    void registerToEvent(DateWrap date, std::string name, int student);
-    void unregisterFromEvent(DateWrap date, std::string name, int student);
+    void registerToEvent(const mtm::DateWrap& date, const std::string& name, int student);
+    void unregisterFromEvent(const mtm::DateWrap& date, const std::string& name, int student);
     void printAllEvents() const;
     void printMonthEvents(int month, int year) const;
     template <class Predicate>
     void printSomeEvents(Predicate predicate, bool verbose = false) const;
-    void printEventDetails(DateWrap date, std::string event_name) const;
-    
+    void printEventDetails(const mtm::DateWrap& date, const std::string& name) const;
 };
+
 template <class Predicate>
 void Schedule::printSomeEvents(Predicate predicate, bool verbose) const
 {
@@ -56,5 +56,3 @@ void Schedule::printSomeEvents(Predicate predicate, bool verbose) const
 }
 
 #endif
-
-

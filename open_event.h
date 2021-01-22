@@ -11,7 +11,7 @@ namespace mtm
 class mtm::OpenEvent: public mtm::BaseEvent
 {
 public:
-    OpenEvent(mtm::DateWrap date, std::string name);
+    OpenEvent(const mtm::DateWrap& date, const std::string& name);
     OpenEvent* clone() const override;
 };
 

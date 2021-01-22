@@ -11,7 +11,8 @@ namespace mtm
     class RecurringEvent : public EventContainer
     {
     public:
-        RecurringEvent(DateWrap date, std::string name, int num_occurrences, int interval_days): EventContainer()
+        RecurringEvent(const DateWrap& date, const std::string& name, int num_occurrences, int interval_days)
+        :EventContainer()
         {
             if(num_occurrences <=0)
             {

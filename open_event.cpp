@@ -2,7 +2,7 @@
 
 using mtm::OpenEvent;
 
-OpenEvent::OpenEvent(mtm::DateWrap date, std::string name): BaseEvent(date,name){}
+OpenEvent::OpenEvent(const mtm::DateWrap& date, const std::string& name): BaseEvent(date,name){}
 
 OpenEvent* OpenEvent::clone() const
 {

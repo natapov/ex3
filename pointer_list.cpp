@@ -118,3 +118,19 @@ PointerList::ListIterator PointerList::begin() const
 {
     return ListIterator(this->head);
 }
+
+PointerList::ListIterator::ListIterator(Node* node):current(node){}
+
+mtm::BaseEvent& PointerList::ListIterator::operator*() const{
+    return *(current->value);
+}
+PointerList::ListIterator& PointerList::ListIterator::operator++(){
+    this->current = this->current->next;
+    return *this;
+}
+bool PointerList::ListIterator::operator==(const ListIterator& other) const {
+    return this->current == other.current;
+}
+bool PointerList::ListIterator::operator!=(const ListIterator& other) const {
+    return !(*this==other);
+}

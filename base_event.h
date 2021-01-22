@@ -21,7 +21,7 @@ protected:
 public:
     const static int MIN_STUDENT = 1;
     const static int MAX_STUDENT = 1234567890;
-    BaseEvent(mtm::DateWrap date, std::string name);
+    BaseEvent(const mtm::DateWrap& date, const std::string& name);
     virtual ~BaseEvent(){}
     virtual void registerParticipant(int participant);
     void unregisterParticipant(int participant);

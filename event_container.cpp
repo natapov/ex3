@@ -18,13 +18,12 @@ EventContainer::EventIterator EventContainer::begin() const
     return EventIterator(this->events.begin());
 }
 
-
 EventContainer::EventIterator EventContainer::end() const
 {
     return EventIterator(this->events.end());
 }
 
-EventContainer::EventIterator::EventIterator(mtm::PointerList::ListIterator listIter): listIter(listIter){}
+EventContainer::EventIterator::EventIterator(const mtm::PointerList::ListIterator& listIter): listIter(listIter){}
 
 EventContainer::EventIterator EventContainer::EventIterator::operator++()
 {
