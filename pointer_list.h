@@ -36,12 +36,12 @@ public:
         private:
             Node* current;
         public:
-        //#TODO: MOVE TO CPP
             ListIterator(Node* node);
             mtm::BaseEvent& operator*() const;
             ListIterator& operator++();
             bool operator==(const ListIterator& other) const;
             bool operator!=(const ListIterator& other) const;
+
     };
 public:
     PointerList();

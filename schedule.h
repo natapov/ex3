@@ -11,7 +11,6 @@
 
 namespace mtm
 {
-
 class Schedule
 {
 private:
@@ -40,19 +39,21 @@ void Schedule::printSomeEvents(Predicate predicate, bool verbose) const
 {
     for (BaseEvent* event: this->event_list)
     {
-        if(predicate(*event))
+        for (BaseEvent* event: this->event_list)
         {
-            if(verbose)
+            if(predicate(*event))
             {
-                event->printLong(std::cout) << std::endl;
-            }
-            else
-            {
-                event->printShort(std::cout) << std::endl;
+                if(verbose)
+                {
+                    event->printLong(std::cout) << std::endl;
+                }
+                else
+                {
+                    event->printShort(std::cout) << std::endl;
+                }
             }
         }
     }
-}
 }
 
 #endif

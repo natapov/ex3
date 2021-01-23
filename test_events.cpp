@@ -8,13 +8,7 @@
 #include "recurring_event.h"
 using std::cout;
 using std::endl;
-// using std::string;
-// using mtm::CustomEvent;
-// using mtm::OpenEvent;
-// using mtm::ClosedEvent;
-// using mtm::EventContainer;
-// using mtm::BaseEvent;
-// using mtm::DateWrap;
+
 using namespace mtm;
 struct Function
 {
@@ -146,7 +140,7 @@ int main()
     int i = 1;
     for(EventContainer::EventIterator iter = rec.begin(); iter != rec.end(); ++iter)
     {
-        (*iter).registerParticipant(i);//ZEEV we can't use .addInvitee() here! should we be able to?
+        (*iter).registerParticipant(i);
         (*iter).printLong(cout);
         i*=2;
     }
