@@ -16,5 +16,4 @@ public:
     void add(const BaseEvent& event) override;
 };
 
-
 #endif

@@ -5,7 +5,6 @@
 using mtm::EventContainer;
 using mtm::BaseEvent;
 
-
 EventContainer::EventContainer(): events(){}
 
 void EventContainer::add(const BaseEvent& event)

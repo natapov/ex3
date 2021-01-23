@@ -14,7 +14,7 @@ namespace mtm
     public:
         OneTimeEvent(const DateWrap& date, const std::string& name): EventContainer()
         {
-            EventType event(date, name); //NOTE: THIS MEANS WE DON'T SUPPORT CUSTOM EVENT BECAUSE THE CONSTRUCTOR TAKES MORE VALUES 
+            EventType event(date, name); //NOTE: THIS MEANS WE DON'T SUPPORT CUSTOM EVENT
             EventContainer::add(event);
         }
         void add(const BaseEvent& event) override{
@@ -22,6 +22,5 @@ namespace mtm
         }
     };
 }
-
 
 #endif

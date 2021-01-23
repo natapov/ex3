@@ -13,7 +13,7 @@ namespace mtm
 }
 using mtm::List;
 
-//Type Y should support these operations:
+//Type T should support these operations:
 // == operator
 // T(const T&) - copy constructor
 // < operator
@@ -39,7 +39,7 @@ public:
             Node* current;
         public:
             ListIterator(Node* node) :current(node){}
-            T operator*() const{    //zeev previously was "const T" but i removed it because T is returned by value
+            T operator*() const{
                 return this->current->value;
             }
             ListIterator& operator++(){
@@ -90,8 +90,7 @@ public:
 
     List& operator=(const List& list)
     {
-        if(this == &list)
-        {
+        if(this == &list){
             return *this;
         }
         Node *new_head = nullptr;
@@ -151,7 +150,7 @@ public:
             this->size++;
             return;
         }
-        while(current->next && current->next->value < new_node->value) //SMALLER value IN THE BEGGINING 
+        while(current->next && current->next->value < new_node->value)
         {
             current = current->next;
         }
@@ -161,8 +160,7 @@ public:
     }
     void remove(T element)//currently removes the first occurents of element
     {
-        if(!this->head)
-        {
+        if(!this->head){
             throw ValueNotInList();
         }
         if(this->head->value == element)

@@ -37,10 +37,10 @@ PointerList::PointerList(const PointerList& list): size(list.size)
         this->head = nullptr;
     }
 }
+
 PointerList& PointerList::operator=(const PointerList& list)
 {
-    if(this == &list)
-    {
+    if(this == &list){
         return *this;
     }
     Node *new_head = nullptr;
@@ -100,7 +100,7 @@ void PointerList::add(BaseEvent* element)
         this->size++;
         return;
     }
-    while(current->next && *(current->next->value) < *(new_node->value)) //SMALLER value IN BaseEvent*HE BEGGINING 
+    while(current->next && *(current->next->value) < *(new_node->value))
     {
         current = current->next;
     }

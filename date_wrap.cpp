@@ -5,7 +5,8 @@ using std::ostream;
 using mtm::NegativeDays;
 using mtm::InvalidDate;
 using std::bad_alloc;
-DateWrap::DateWrap(int day, int month, int year){
+DateWrap::DateWrap(int day, int month, int year)
+{
 	if(day <= 0 || day > this->DAYS_IN_MONTH || month <= 0 || month > this->MONTHS_IN_YEAR)
 	{
 		throw InvalidDate();
@@ -16,18 +17,21 @@ DateWrap::DateWrap(int day, int month, int year){
 }
 
 int DateWrap::day() const{
-		return day_data;
-	}
+	return day_data;
+}
 int DateWrap::month() const{
-		return month_data;
-	}
+	return month_data;
+}
 int DateWrap::year() const{
-		return year_data;
-	}
-Date DateWrap::turnIntoDate() const{
+	return year_data;
+}
+
+Date DateWrap::turnIntoDate() const
+{
 	return dateCreate(day_data, month_data, year_data);
 }
-int DateWrap::dateWrapCompare(const DateWrap& date) const{
+int DateWrap::dateWrapCompare(const DateWrap& date) const
+{
 	Date this_date = this->turnIntoDate();
 	if(this_date == NULL)
 	{

@@ -8,16 +8,6 @@ using std::cout;
 using std::endl;
 
 class BadInput{};
-// PRINT FUNCTION
-// template<class T>
-// void print(std::vector<T> vec)
-// {
-//     for (T element: vec)
-//     {
-//         cout << element;
-//     }
-//     cout << endl;
-// }
 
 template<class T>
 std::vector<T> slice(std::vector<T> vec, int start, int step, int stop)
