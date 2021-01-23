@@ -39,18 +39,15 @@ namespace mtm
     {
         for (BaseEvent* event: this->event_list)
         {
-            for (BaseEvent* event: this->event_list)
+            if(predicate(*event))
             {
-                if(predicate(*event))
+                if(verbose)
                 {
-                    if(verbose)
-                    {
-                        event->printLong(std::cout) << std::endl;
-                    }
-                    else
-                    {
-                        event->printShort(std::cout) << std::endl;
-                    }
+                    event->printLong(std::cout) << std::endl;
+                }
+                else
+                {
+                    event->printShort(std::cout) << std::endl;
                 }
             }
         }
