@@ -84,7 +84,7 @@ void Schedule::addEvents(const EventContainer& container)
 
 }
 
-BaseEvent* Schedule::findEventByDateAndName(mtm::DateWrap date, std::string name) const
+BaseEvent* Schedule::findEventByDateAndName(const mtm::DateWrap& date, const std::string& name) const
 {
     for (BaseEvent* event_p: this->event_list)
     {
@@ -93,10 +93,10 @@ BaseEvent* Schedule::findEventByDateAndName(mtm::DateWrap date, std::string name
             return event_p;
         }
     }
-    return NULL;
+    return nullptr;
 }
 
-void Schedule::registerToEvent(DateWrap date, std::string name, int student)
+void Schedule::registerToEvent(const mtm::DateWrap& date, const std::string& name, int student)
 {
     BaseEvent* event = this->findEventByDateAndName(date, name);
     if(!event)
@@ -106,7 +106,7 @@ void Schedule::registerToEvent(DateWrap date, std::string name, int student)
     event->registerParticipant(student);
 }
 
-void Schedule::unregisterFromEvent(DateWrap date, std::string name, int student)
+void Schedule::unregisterFromEvent(const mtm::DateWrap& date, const std::string& name, int student)
 {
     BaseEvent* event = this->findEventByDateAndName(date, name);
     if(!event)
@@ -135,7 +135,7 @@ void Schedule::printMonthEvents(int month, int year)  const
     }
 }
 
-void Schedule::printEventDetails(DateWrap date, std::string event_name) const
+void Schedule::printEventDetails(const mtm::DateWrap& date, const std::string& event_name) const
 {
     BaseEvent* event = this->findEventByDateAndName(date, event_name);
     if(!event)

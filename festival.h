@@ -12,7 +12,7 @@ class mtm::Festival : public mtm::EventContainer
 {
     mtm::DateWrap date;
 public:
-    Festival(mtm::DateWrap date);
+    Festival(const mtm::DateWrap& date);
     void add(const BaseEvent& event) override;
 };
 

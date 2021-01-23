@@ -26,7 +26,7 @@ private:
     {
         T value;
         Node* next;
-        Node(T value): value(value), next(NULL) {}
+        Node(T value): value(value), next(nullptr) {}
         Node(T value, Node* next): value(value), next(next) {}
     };
     
@@ -54,7 +54,7 @@ public:
             }
     };
 public:
-    List(): size(0), head(NULL) {}
+    List(): size(0), head(nullptr) {}
 
     ~List()
     {
@@ -84,7 +84,7 @@ public:
         }
         else
         {
-            this->head = NULL;
+            this->head = nullptr;
         }
     }
 
@@ -94,7 +94,7 @@ public:
         {
             return *this;
         }
-        Node *new_head = NULL;
+        Node *new_head = nullptr;
         if(list.size != 0)
         {
             assert(list.head);
@@ -191,7 +191,7 @@ public:
     
     ListIterator end() const
     {
-        return ListIterator(NULL);
+        return ListIterator(nullptr);
     }
 
     ListIterator begin() const

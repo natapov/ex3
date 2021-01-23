@@ -8,7 +8,7 @@ using mtm::DateWrap;
 using mtm::AlreadyRegistered;
 using mtm::InvalidStudent;
 
-BaseEvent::BaseEvent(DateWrap date,string name): name(name), date(date), participants(){}
+BaseEvent::BaseEvent(const mtm::DateWrap& date, const std::string& name): name(name), date(date), participants(){}
 void BaseEvent::registerParticipant(int participant)
 {
     if (participant > this->MAX_STUDENT || participant < this->MIN_STUDENT)

@@ -24,7 +24,7 @@ private:
     {
         BaseEvent* value;
         Node* next;
-        Node(BaseEvent* value): value(value), next(NULL) {}
+        Node(BaseEvent* value): value(value), next(nullptr) {}
         Node(BaseEvent* value, Node* next): value(value), next(next) {}
     };
     
@@ -36,20 +36,12 @@ public:
         private:
             Node* current;
         public:
-            ListIterator(Node* node) :current(node){}
-            mtm::BaseEvent& operator*() const{
-                return (*(current->value));
-            }
-            ListIterator& operator++(){
-               this->current = this->current->next;
-               return *this;
-            }
-            bool operator==(const ListIterator& other) const {
-                return this->current == other.current;
-            }
-            bool operator!=(const ListIterator& other) const {
-                return !(*this==other);
-            }
+            ListIterator(Node* node);
+            mtm::BaseEvent& operator*() const;
+            ListIterator& operator++();
+            bool operator==(const ListIterator& other) const;
+            bool operator!=(const ListIterator& other) const;
+
     };
 public:
     PointerList();

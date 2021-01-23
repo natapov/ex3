@@ -3,7 +3,7 @@
 using mtm::AlreadyInvited;
 using mtm::ClosedEvent;
 
-ClosedEvent::ClosedEvent(mtm::DateWrap date, std::string name): BaseEvent(date, name), invitees(){}
+ClosedEvent::ClosedEvent(const mtm::DateWrap& date, const std::string& name): BaseEvent(date, name), invitees(){}
 
 void ClosedEvent::addInvitee(int student)
 {

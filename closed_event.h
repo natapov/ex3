@@ -13,7 +13,7 @@ class mtm::ClosedEvent : public mtm::BaseEvent
 {
     List<int> invitees;
 public:
-    ClosedEvent(mtm::DateWrap date, std::string name);
+    ClosedEvent(const mtm::DateWrap& date, const std::string& name);
     void registerParticipant(int participant) override;
     void addInvitee(int student);
     ClosedEvent* clone() const override;

@@ -27,7 +27,7 @@ public:
     {
         PointerList::ListIterator listIter;
     public:
-        EventIterator(PointerList::ListIterator listIter);
+        EventIterator(const PointerList::ListIterator& listIter);
         
         EventIterator operator++();
         const BaseEvent& operator*() const;

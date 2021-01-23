@@ -13,7 +13,7 @@ typedef struct Date_t *Date;
 * @param month - the month of the date.
 * @param year - the year of the date.
 * @return
-* 	NULL - if allocation failed or date is illegal.
+* 	nullptr - if allocation failed or date is illegal.
 * 	A new Date in case of success.
 */
 Date dateCreate(int day, int month, int year);
@@ -21,7 +21,7 @@ Date dateCreate(int day, int month, int year);
 /**
 * dateDestroy: Deallocates an existing Date.
 *
-* @param date - Target date to be deallocated. If priority queue is NULL nothing will be done
+* @param date - Target date to be deallocated. If priority queue is nullptr nothing will be done
 */
 void dateDestroy(Date date);
 
@@ -30,7 +30,7 @@ void dateDestroy(Date date);
 *
 * @param date - Target Date.
 * @return
-* 	NULL if a NULL was sent or a memory allocation failed.
+* 	nullptr if a nullptr was sent or a memory allocation failed.
 * 	A Date containing the same elements as date otherwise.
 */
 Date dateCopy(Date date);
@@ -44,7 +44,7 @@ Date dateCopy(Date date);
 * @param year - the pointer to assign to year of the date into.
 *
 * @return
-* 	false if one of pointers is NULL.
+* 	false if one of pointers is nullptr.
 * 	Otherwise true and the date is assigned to the pointers.
 */
 bool dateGet(Date date, int* day, int* month, int* year);
@@ -54,13 +54,13 @@ bool dateGet(Date date, int* day, int* month, int* year);
 *
 * @return
 * 		A negative integer if date1 occurs first;
-* 		0 if they're equal or one of the given dates is NULL;
+* 		0 if they're equal or one of the given dates is nullptr;
 *		A positive integer if date1 arrives after date2.
 */
 int dateCompare(Date date1, Date date2);
 
 /**
-* dateTick: increases the date by one day, if date is NULL should do nothing.
+* dateTick: increases the date by one day, if date is nullptr should do nothing.
 *
 * @param date - Target Date
 *

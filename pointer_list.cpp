@@ -2,7 +2,7 @@
 
 using namespace mtm;
 
-PointerList::PointerList(): size(0), head(NULL) {}
+PointerList::PointerList(): size(0), head(nullptr) {}
 
 
 PointerList::~PointerList()
@@ -34,7 +34,7 @@ PointerList::PointerList(const PointerList& list): size(list.size)
     }
     else
     {
-        this->head = NULL;
+        this->head = nullptr;
     }
 }
 PointerList& PointerList::operator=(const PointerList& list)
@@ -43,7 +43,7 @@ PointerList& PointerList::operator=(const PointerList& list)
     {
         return *this;
     }
-    Node *new_head = NULL;
+    Node *new_head = nullptr;
     if(list.size != 0)
     {
         assert(list.head);
@@ -83,7 +83,7 @@ bool PointerList::contains(BaseEvent* element) const
 }
 
 void PointerList::add(BaseEvent* element)
-{
+{ 
     Node *new_node = new Node(element);
     Node *current = this->head;
     if(!current)
@@ -111,10 +111,26 @@ void PointerList::add(BaseEvent* element)
 
 PointerList::ListIterator PointerList::end() const
 {
-    return ListIterator(NULL);
+    return ListIterator(nullptr);
 }
 
 PointerList::ListIterator PointerList::begin() const
 {
     return ListIterator(this->head);
+}
+
+PointerList::ListIterator::ListIterator(Node* node):current(node){}
+
+mtm::BaseEvent& PointerList::ListIterator::operator*() const{
+    return *(current->value);
+}
+PointerList::ListIterator& PointerList::ListIterator::operator++(){
+    this->current = this->current->next;
+    return *this;
+}
+bool PointerList::ListIterator::operator==(const ListIterator& other) const {
+    return this->current == other.current;
+}
+bool PointerList::ListIterator::operator!=(const ListIterator& other) const {
+    return !(*this==other);
 }

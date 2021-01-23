@@ -12,7 +12,7 @@ namespace mtm
     class OneTimeEvent : public EventContainer
     {
     public:
-        OneTimeEvent(DateWrap date, std::string name): EventContainer()
+        OneTimeEvent(const DateWrap& date, const std::string& name): EventContainer()
         {
             EventType event(date, name); //NOTE: THIS MEANS WE DON'T SUPPORT CUSTOM EVENT BECAUSE THE CONSTRUCTOR TAKES MORE VALUES 
             EventContainer::add(event);
