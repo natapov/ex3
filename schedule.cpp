@@ -53,7 +53,7 @@ Schedule& Schedule::operator=(const Schedule& schedule)
 //#TODO: check this worsk correctly
 bool event_pointer_compare(BaseEvent* event1, BaseEvent* event2)
 {
-    return (*event1 < *event2) || (*event1 == *event2); //TODO: PASSES TESTS EVEN WITHOUT SECOND CONDITION, WHICH IS CORRECT?
+    return (*event1 < *event2) || (*event1 == *event2); 
 }
 
 
@@ -64,11 +64,10 @@ void Schedule::addEvent(const BaseEvent& event)
     this->event_list.sort(event_pointer_compare);
 }
 
-void Schedule::addEvents(const EventContainer& event_container)
+void Schedule::addEvents(const EventContainer& container)
 {
-    for(EventContainer::EventIterator iter_event = event_container.begin(); iter_event != event_container.end(); ++iter_event)
+    for(EventContainer::EventIterator iter_event = container.begin();iter_event != container.end();++iter_event)
     {
-        //#TODO: we can improve time complexity
         for(BaseEvent* event_p: this->event_list)
         {
             if(*iter_event == *event_p)
@@ -77,7 +76,7 @@ void Schedule::addEvents(const EventContainer& event_container)
             }
         }
     }
-    for(EventContainer::EventIterator iter_event = event_container.begin(); iter_event != event_container.end(); ++iter_event)
+    for(EventContainer::EventIterator iter_event = container.begin();iter_event != container.end();++iter_event)
     {
         this->addEvent(*iter_event);
     }

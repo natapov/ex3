@@ -36,7 +36,6 @@ public:
         private:
             Node* current;
         public:
-        //#TODO: MOVE TO CPP
             ListIterator(Node* node) :current(node){}
             mtm::BaseEvent& operator*() const{
                 return (*(current->value));
